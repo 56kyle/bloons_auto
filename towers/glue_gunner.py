@@ -2,9 +2,10 @@ from tower import Tower
 
 
 class GlueGunner(Tower):
+    name = 'glue_gunner'
+    range = 247
+    width = 65
+    height = 57
+
     def __init__(self, **kwargs):
-        kwargs['name'] = 'glue_gunner'
-        kwargs['range'] = 247
-        kwargs['width'] = 65
-        kwargs['height'] = 57
         super().__init__(**kwargs)

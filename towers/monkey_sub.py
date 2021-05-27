@@ -2,10 +2,11 @@ from tower import Tower
 
 
 class MonkeySub(Tower):
+    name = 'monkey_sub'
+    range = 226
+    aquatic = True
+    width = 75
+    height = 65
+
     def __init__(self, **kwargs):
-        kwargs['name'] = 'monkey_sub'
-        kwargs['range'] = 226
-        kwargs['aquatic'] = True
-        kwargs['width'] = 75
-        kwargs['height'] = 65
         super().__init__(**kwargs)

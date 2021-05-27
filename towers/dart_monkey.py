@@ -2,9 +2,10 @@ from tower import Tower
 
 
 class DartMonkey(Tower):
+    name = 'dart_monkey'
+    range = 172
+    width = 65
+    height = 57
+
     def __init__(self, **kwargs):
-        kwargs['name'] = 'dart_monkey'
-        kwargs['range'] = 172
-        kwargs['width'] = 65
-        kwargs['height'] = 57
         super().__init__(**kwargs)

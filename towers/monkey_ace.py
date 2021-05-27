@@ -2,9 +2,10 @@ from tower import Tower
 
 
 class MonkeyAce(Tower):
+    name = 'monkey_ace'
+    range = 118
+    width = 152
+    height = 85
+
     def __init__(self, **kwargs):
-        kwargs['name'] = 'monkey_ace'
-        kwargs['range'] = 118
-        kwargs['width'] = 152
-        kwargs['height'] = 85
         super().__init__(**kwargs)

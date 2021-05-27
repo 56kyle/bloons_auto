@@ -2,9 +2,10 @@ from tower import Tower
 
 
 class BoomerangMonkey(Tower):
+    name = 'boomerang_monkey'
+    range = 231
+    width = 75
+    height = 65
+
     def __init__(self, **kwargs):
-        kwargs['name'] = 'boomerang_monkey'
-        kwargs['range'] = 231
-        kwargs['width'] = 75
-        kwargs['height'] = 65
         super().__init__(**kwargs)

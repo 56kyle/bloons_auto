@@ -28,13 +28,16 @@ from towers.wizard_monkey import WizardMonkey
 Point = collections.namedtuple('Point', 'x y')
 
 
+def get_hitbox(klass):
+    time.sleep(5)
+    tower = klass()
+
+
 if __name__ == '__main__':
     time.sleep(5)
-    d = DartMonkey(upgrades=[5, 0, 2], location=Point(900, 900))
-    b = BananaFarm(upgrades=[3, 0, 2], location=Point(500, 900))
-    i = IceMonkey(upgrades=[1, 2, 2], location=Point(500, 600))
-    del d, b, i
-
+    dart = DartMonkey(upgrades=[3, 2, 0])
+    time.sleep(3)
+    del dart
 
 
 

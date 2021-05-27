@@ -1,6 +1,6 @@
 import mouse
 import keyboard
-import pyscreeze
+from window_input import Window, Key
 import collections
 import time
 from config import keybinds
@@ -30,39 +30,59 @@ ELITE = 1014
 
 class Tower:
     """Base class for all towers"""
+    name = None
+    range = None
+    height = None
+    width = None
+    keybind = None
     target_type_button = (222, 374)
+    tower_deselect_button = (398, 77)
+
+    tower_panel_background = (40, 110)
+    tower_panel_background_color = (193, 152, 95)
+
+    tower_placement_button = (1578, 139)
+    tower_placement_button_color = (255, 62, 0)
 
     def __init__(self, **kwargs):
+        self.window = Window()
         self.location = kwargs.get('location')
-        self.name = kwargs.get('name')
-        self.range = kwargs.get('range')
-        self.width = kwargs.get('width')
-        self.height = kwargs.get('height')
-        self.keybind = keybinds[self.name]
+        if self.location:
+            try:
+                self.location.x = self.location.x
+            except AttributeError:
+                self.location = Point(*self.location)
+        else:
+            self.location = Point(*mouse.get_position())
+
+        self.keybind = keybinds.get(self.name)
         self.price = kwargs.get('price')
         self.value = self.price
-        self.upgrades = kwargs.get('upgrades')
-        if self.upgrades:
-            if self.upgrades[0] > 0:
-                self.upgrade(1, self.upgrades[0])
-            if self.upgrades[1] > 0:
-                self.upgrade(2, self.upgrades[1])
-            if self.upgrades[2] > 0:
-                self.upgrade(3, self.upgrades[2])
-        else:
-            self.upgrades = [0, 0, 0]
         self.place()
+        upgrades = kwargs.get('upgrades')
+        self.upgrades = [0, 0, 0]
+        if upgrades:
+            self.assign_upgrades(upgrades)
+
+    def __del__(self):
+        self.select()
+        keyboard.press_and_release(keybinds['sell'], .1)
 
     def can_place(self, location):
+        window = Window()
+        self.keybind = keybinds[self.name]
         mouse.move(location.x, location.y)
+        time.sleep(.1)
         if location.x > 1100:
             measuring_point = Point(location.x - (self.range - 2), location.y)
         else:
             measuring_point = Point(location.x + (self.range - 2), location.y)
 
-        before = pyscreeze.pixel(measuring_point.x, measuring_point.y)
+        before = window.pixel(measuring_point.x, measuring_point.y)
         keyboard.press_and_release(self.keybind, .1)
-        after = pyscreeze.pixel(measuring_point.x, measuring_point.y)
+        time.sleep(.2)
+        after = window.pixel(measuring_point.x, measuring_point.y)
+        self.deselect()
         if (after[0] - before[0]) >= 8:
             return False
         else:
@@ -70,23 +90,38 @@ class Tower:
 
     def place(self):
         if self.can_place(self.location):
+            mouse.move(*self.location)
+            time.sleep(.1)
+            keyboard.press_and_release(self.keybind, .1)
+            time.sleep(.1)
             mouse.click()
             return True
         return False
 
-    def deselect(self):
-        keyboard.press_and_release("escape", .1)
+    @staticmethod
+    def deselect():
+        keyboard.press_and_release('escape', .1)
+        '''
+        x, y = Tower.tower_placement_button
+        mouse.move(x + 10, y - 10)
+        time.sleep(.2)
+        mouse.click()
+        time.sleep(.1)
+        '''
 
     def select(self):
         mouse.move(*self.location)
+        time.sleep(.1)
         mouse.click()
         time.sleep(.1)
 
-    def upgrade(self, pathway, times=1):
+    def assign_upgrades(self, desired_upgrades):
         self.select()
-        for _ in range(times):
-            keyboard.press_and_release(keybinds['upgrade_path_' + str(pathway)], .1)
-            time.sleep(.1)
+        for i in range(3):
+            for _ in range(desired_upgrades[i] - self.upgrades[i]):
+                keyboard.press_and_release(keybinds['upgrade_path_' + str(i + 1)], .1)
+                time.sleep(.1)
+        self.upgrades = desired_upgrades
 
     def relocate_lock(self, location):
         mouse.move(*self.target_type_button)
@@ -94,9 +129,7 @@ class Tower:
         mouse.move(*location)
         mouse.click()
 
-    def __del__(self):
-        self.select()
-        keyboard.press_and_release(keybinds['sell'], .1)
+
 
 
 if __name__ == '__main__':

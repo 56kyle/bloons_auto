@@ -2,9 +2,10 @@ from tower import Tower
 
 
 class Druid(Tower):
+    name = 'druid'
+    range = 188
+    width = 75
+    height = 65
+
     def __init__(self, **kwargs):
-        kwargs['name'] = 'druid'
-        kwargs['range'] = 188
-        kwargs['width'] = 75
-        kwargs['height'] = 65
         super().__init__(**kwargs)

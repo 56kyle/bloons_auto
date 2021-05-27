@@ -2,9 +2,10 @@ from tower import Tower
 
 
 class TackShooter(Tower):
+    name = 'tack_shooter'
+    range = 123
+    width = 65
+    height = 57
+
     def __init__(self, **kwargs):
-        kwargs['name'] = 'tack_shooter'
-        kwargs['range'] = 123
-        kwargs['width'] = 65
-        kwargs['height'] = 57
         super().__init__(**kwargs)
