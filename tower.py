@@ -27,6 +27,12 @@ FIGURE_EIGHT = 1012
 WINGMONKEY = 1013
 ELITE = 1014
 
+sizes = {
+    'small': (65, 57),
+    'medium': (75, 65),
+    'large': (87, 75),
+    'xl': (119, 103),
+}
 
 class Tower:
     """Base class for all towers"""
@@ -35,6 +41,9 @@ class Tower:
     height = None
     width = None
     keybind = None
+    aquatic = False
+    size = None
+
     target_type_button = (222, 374)
     tower_deselect_button = (398, 77)
 
@@ -68,21 +77,23 @@ class Tower:
         self.select()
         keyboard.press_and_release(keybinds['sell'], .1)
 
-    def can_place(self, location):
+    @classmethod
+    def can_place(cls, location):
         window = Window()
-        self.keybind = keybinds[self.name]
-        mouse.move(location.x, location.y)
-        time.sleep(.1)
+        cls.keybind = keybinds[cls.name]
+        while mouse.get_position() != (location.x, location.y):
+            mouse.move(location.x, location.y)
+
         if location.x > 1100:
-            measuring_point = Point(location.x - (self.range - 2), location.y)
+            measuring_point = Point(location.x - (cls.range - 2), location.y)
         else:
-            measuring_point = Point(location.x + (self.range - 2), location.y)
+            measuring_point = Point(location.x + (cls.range - 2), location.y)
 
         before = window.pixel(measuring_point.x, measuring_point.y)
-        keyboard.press_and_release(self.keybind, .1)
-        time.sleep(.2)
+        keyboard.press_and_release(cls.keybind)
         after = window.pixel(measuring_point.x, measuring_point.y)
-        self.deselect()
+        time.sleep(.05)
+        cls.deselect()
         if (after[0] - before[0]) >= 8:
             return False
         else:
@@ -91,7 +102,7 @@ class Tower:
     def place(self):
         if self.can_place(self.location):
             mouse.move(*self.location)
-            time.sleep(.1)
+            time.sleep(.0)
             keyboard.press_and_release(self.keybind, .1)
             time.sleep(.1)
             mouse.click()
@@ -128,8 +139,6 @@ class Tower:
         mouse.click()
         mouse.move(*location)
         mouse.click()
-
-
 
 
 if __name__ == '__main__':

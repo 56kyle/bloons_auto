@@ -1,0 +1,1 @@
+from .skates import Skates

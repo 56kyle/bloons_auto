@@ -1,0 +1,1 @@
+from .resort import Resort

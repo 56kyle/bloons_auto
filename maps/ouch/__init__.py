@@ -1,0 +1,1 @@
+from .ouch import Ouch

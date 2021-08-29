@@ -1,43 +1,35 @@
 import time
 import mouse
 import collections
-from towers.alchemist import Alchemist
-from towers.banana_farm import BananaFarm
-from towers.bomb_shooter import BombShooter
-from towers.boomerang_monkey import BoomerangMonkey
-from towers.dart_monkey import DartMonkey
-from towers.dartling_gunner import DartlingGunner
-from towers.druid import Druid
-from towers.engineer_monkey import EngineerMonkey
-from towers.glue_gunner import GlueGunner
-from towers.heli_pilot import HeliPilot
-from towers.ice_monkey import IceMonkey
-from towers.monkey_ace import MonkeyAce
-from towers.monkey_buccaneer import MonkeyBuccaneer
-from towers.monkey_sub import MonkeySub
-from towers.monkey_village import MonkeyVillage
-from towers.mortar_monkey import MortarMonkey
-from towers.ninja_monkey import NinjaMonkey
-from towers.sniper_monkey import SniperMonkey
-from towers.spike_factory import SpikeFactory
-from towers.super_monkey import SuperMonkey
-from towers.tack_shooter import TackShooter
-from towers.wizard_monkey import WizardMonkey
-
+import towers
+from PIL import Image
+from tower import Tower
 
 Point = collections.namedtuple('Point', 'x y')
 
 
-def get_hitbox(klass):
-    time.sleep(5)
-    tower = klass()
+def get_placement_map(tower, x_bounds=(0, 1920), y_bounds=(0, 1080)):
+    img = Image.new('RGB', (1920, 1080))
+
+    xi = 0 + round(tower.width / 2) - 1
+    xf = 1920 - round(tower.width / 2) + 1
+    yi = 0 + round(tower.height / 2) - 1
+    yf = 1080 - round(tower.height / 2) + 1
+    for x in range(xi if xi > x_bounds[0] else x_bounds[0], xf if xf < x_bounds[1] else x_bounds[1]):
+        for y in range(yi if yi > y_bounds[0] else y_bounds[0], yf if yf < y_bounds[1] else y_bounds[1]):
+            if tower.can_place(Point(x, y)):
+                img.putpixel((x, y), (255, 255, 255))
 
 
 if __name__ == '__main__':
     time.sleep(5)
-    dart = DartMonkey(upgrades=[3, 2, 0])
-    time.sleep(3)
-    del dart
+    get_placement_map(towers.SMALL[0], x_bounds=(571, 1612))
+    #get_placement_map(towers.MEDIUM[0])
+    #get_placement_map(towers.SpikeFactory)
+    #get_placement_map(towers.XL[0])
+    #for tower in towers.RECTANGLE:
+        #get_placement_map(tower)
+
 
 
 
