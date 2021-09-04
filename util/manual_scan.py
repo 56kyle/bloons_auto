@@ -18,6 +18,7 @@ Region = collections.namedtuple('Region', 'xi yi xf yf')
 
 
 def can_place(cls, location, img, win):
+    win = Window()
     while not mouse.get_position() == location:
         mouse.move(location.x, location.y)
         print(f'mouse moved to {location}')
@@ -43,7 +44,7 @@ if __name__ == '__main__':
     time.sleep(5)
     win = Window()
     tower = towers.SMALL[0]
-    a_map = Infernal()
+    a_map = DarkCastle()
     im = win.capture(((0, 0), (1920, 1080)))
     im.save(f'../maps/{a_map.name}/{a_map.name}.png')
     img = Image.new('RGB', (1920, 1080))

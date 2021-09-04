@@ -36,6 +36,8 @@ LARGE = []
 XL = []
 RECTANGLE = []
 
+SIZES = [SMALL, MEDIUM, LARGE, XL, RECTANGLE]
+
 for tower in ALL:
     if tower.width == 65 and tower.height == 57:
         SMALL.append(tower)

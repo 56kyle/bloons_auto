@@ -1,0 +1,7 @@
+
+
+
+
+class PixelNotChangingError(Exception):
+    pass
+
