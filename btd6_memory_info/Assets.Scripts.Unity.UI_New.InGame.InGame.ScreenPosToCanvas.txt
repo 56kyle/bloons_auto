@@ -1,0 +1,38 @@
+
+GameAssembly.dll + 0x3535A0
+
+Assets.Scripts.Unity.UI_New.InGame.InGame.ScreenPosToCanvas - 40 53                 - push rbx
+GameAssembly.dll+3535A2                                     - 48 83 EC 40           - sub rsp,40
+GameAssembly.dll+3535A6                                     - 48 89 54 24 50        - mov [rsp+50],rdx
+GameAssembly.dll+3535AB                                     - 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+3535AE                                     - 48 8B 51 50           - mov rdx,[rcx+50]
+GameAssembly.dll+3535B2                                     - 0F29 74 24 30         - movaps [rsp+30],xmm6
+GameAssembly.dll+3535B7                                     - 48 85 D2              - test rdx,rdx
+GameAssembly.dll+3535BA                                     - 74 69                 - je GameAssembly.dll+353625
+GameAssembly.dll+3535BC                                     - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+3535BF                                     - 48 8D 4C 24 20        - lea rcx,[rsp+20]
+GameAssembly.dll+3535C4                                     - E8 7717FF00           - call UnityEngine.Transform.get_localScale
+GameAssembly.dll+3535C9                                     - 48 8B 53 50           - mov rdx,[rbx+50]
+GameAssembly.dll+3535CD                                     - F3 0F10 30            - movss xmm6,[rax]
+GameAssembly.dll+3535D1                                     - 48 85 D2              - test rdx,rdx
+GameAssembly.dll+3535D4                                     - 74 4F                 - je GameAssembly.dll+353625
+GameAssembly.dll+3535D6                                     - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+3535D9                                     - 48 8D 4C 24 20        - lea rcx,[rsp+20]
+GameAssembly.dll+3535DE                                     - E8 5D17FF00           - call UnityEngine.Transform.get_localScale
+GameAssembly.dll+3535E3                                     - F3 0F10 54 24 54      - movss xmm2,[rsp+54]
+GameAssembly.dll+3535E9                                     - 48 8D 4C 24 68        - lea rcx,[rsp+68]
+GameAssembly.dll+3535EE                                     - F3 0F10 4C 24 50      - movss xmm1,[rsp+50]
+GameAssembly.dll+3535F4                                     - 45 33 C9              - xor r9d,r9d
+GameAssembly.dll+3535F7                                     - F3 0F5E CE            - divss xmm1,xmm6
+GameAssembly.dll+3535FB                                     - F2 0F10 00            - movsd xmm0,[rax]
+GameAssembly.dll+3535FF                                     - 0FC6 C0 55            - shufps xmm0,xmm0,55
+GameAssembly.dll+353603                                     - F3 0F5E D0            - divss xmm2,xmm0
+GameAssembly.dll+353607                                     - 48 C7 44 24 68 00000000 - mov qword ptr [rsp+68],Mono.Security.Interface.MonoTlsProvider.get_SupportedProtocols
+GameAssembly.dll+353610                                     - E8 FB0E6500           - call GameAssembly.dll+9A4510
+GameAssembly.dll+353615                                     - 48 8B 44 24 68        - mov rax,[rsp+68]
+GameAssembly.dll+35361A                                     - 0F28 74 24 30         - movaps xmm6,[rsp+30]
+GameAssembly.dll+35361F                                     - 48 83 C4 40           - add rsp,40
+GameAssembly.dll+353623                                     - 5B                    - pop rbx
+GameAssembly.dll+353624                                     - C3                    - ret 
+GameAssembly.dll+353625                                     - E8 26FAEBFF           - call GameAssembly.dll+213050
+GameAssembly.dll+35362A                                     - CC                    - int 3 

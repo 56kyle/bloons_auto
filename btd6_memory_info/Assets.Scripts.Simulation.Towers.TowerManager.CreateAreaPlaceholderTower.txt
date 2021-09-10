@@ -1,0 +1,115 @@
+
+GameAssembly.dll + 0x9905A0
+
+Assets.Scripts.Simulation.Towers.TowerManager.CreateAreaPlaceholderTower - 48 89 5C 24 20        - mov [rsp+20],rbx
+GameAssembly.dll+9905A5                                                  - 41 54                 - push r12
+GameAssembly.dll+9905A7                                                  - 41 56                 - push r14
+GameAssembly.dll+9905A9                                                  - 41 57                 - push r15
+GameAssembly.dll+9905AB                                                  - 48 83 EC 40           - sub rsp,40
+GameAssembly.dll+9905AF                                                  - 80 3D AD877601 00     - cmp byte ptr [GameAssembly.dll+20F8D63],00
+GameAssembly.dll+9905B6                                                  - 45 8B F1              - mov r14d,r9d
+GameAssembly.dll+9905B9                                                  - 49 8B D8              - mov rbx,r8
+GameAssembly.dll+9905BC                                                  - 4C 8B E2              - mov r12,rdx
+GameAssembly.dll+9905BF                                                  - 4C 8B F9              - mov r15,rcx
+GameAssembly.dll+9905C2                                                  - 75 12                 - jne GameAssembly.dll+9905D6
+GameAssembly.dll+9905C4                                                  - 8B 0D 22D4F600        - mov ecx,[GameAssembly.dll+18FD9EC]
+GameAssembly.dll+9905CA                                                  - E8 112988FF           - call GameAssembly.dll+212EE0
+GameAssembly.dll+9905CF                                                  - C6 05 8D877601 01     - mov byte ptr [GameAssembly.dll+20F8D63],01
+GameAssembly.dll+9905D6                                                  - 49 8B 47 18           - mov rax,[r15+18]
+GameAssembly.dll+9905DA                                                  - 48 89 6C 24 60        - mov [rsp+60],rbp
+GameAssembly.dll+9905DF                                                  - 48 89 74 24 68        - mov [rsp+68],rsi
+GameAssembly.dll+9905E4                                                  - 48 89 7C 24 70        - mov [rsp+70],rdi
+GameAssembly.dll+9905E9                                                  - 48 85 C0              - test rax,rax
+GameAssembly.dll+9905EC                                                  - 0F84 9B010000         - je GameAssembly.dll+99078D
+GameAssembly.dll+9905F2                                                  - 48 8B 0D 3F24A501     - mov rcx,[GameAssembly.dll+23E2A38]
+GameAssembly.dll+9905F9                                                  - 48 8B 78 40           - mov rdi,[rax+40]
+GameAssembly.dll+9905FD                                                  - E8 0E2A88FF           - call GameAssembly.dll+213010
+GameAssembly.dll+990602                                                  - 8B 53 08              - mov edx,[rbx+08]
+GameAssembly.dll+990605                                                  - 4C 8D 44 24 30        - lea r8,[rsp+30]
+GameAssembly.dll+99060A                                                  - F2 0F10 03            - movsd xmm0,[rbx]
+GameAssembly.dll+99060E                                                  - 33 F6                 - xor esi,esi
+GameAssembly.dll+990610                                                  - 89 54 24 38           - mov [rsp+38],edx
+GameAssembly.dll+990614                                                  - 0F57 DB               - xorps xmm3,xmm3
+GameAssembly.dll+990617                                                  - 48 8B 15 3A37A501     - mov rdx,[GameAssembly.dll+23E3D58]
+GameAssembly.dll+99061E                                                  - 48 8B C8              - mov rcx,rax
+GameAssembly.dll+990621                                                  - 48 8B E8              - mov rbp,rax
+GameAssembly.dll+990624                                                  - F2 0F11 44 24 30      - movsd [rsp+30],xmm0
+GameAssembly.dll+99062A                                                  - 48 89 74 24 20        - mov [rsp+20],rsi
+GameAssembly.dll+99062F                                                  - E8 8C90B0FF           - call Assets.Scripts.Models.Behaviors.TransformModel..ctor
+GameAssembly.dll+990634                                                  - 48 85 FF              - test rdi,rdi
+GameAssembly.dll+990637                                                  - 0F84 50010000         - je GameAssembly.dll+99078D
+GameAssembly.dll+99063D                                                  - 4C 8B 05 DCD0A501     - mov r8,[GameAssembly.dll+23ED720]
+GameAssembly.dll+990644                                                  - 48 8B D5              - mov rdx,rbp
+GameAssembly.dll+990647                                                  - 48 8B CF              - mov rcx,rdi
+GameAssembly.dll+99064A                                                  - E8 E195DAFF           - call GameAssembly.dll+739C30
+GameAssembly.dll+99064F                                                  - 48 85 C0              - test rax,rax
+GameAssembly.dll+990652                                                  - 0F84 35010000         - je GameAssembly.dll+99078D
+GameAssembly.dll+990658                                                  - 48 8B 48 48           - mov rcx,[rax+48]
+GameAssembly.dll+99065C                                                  - 48 85 C9              - test rcx,rcx
+GameAssembly.dll+99065F                                                  - 0F84 28010000         - je GameAssembly.dll+99078D
+GameAssembly.dll+990665                                                  - 45 33 C9              - xor r9d,r9d
+GameAssembly.dll+990668                                                  - 41 B0 01              - mov r8l,01
+GameAssembly.dll+99066B                                                  - 49 8B D4              - mov rdx,r12
+GameAssembly.dll+99066E                                                  - E8 BD8C1700           - call Assets.Scripts.Simulation.Objects.Entity.AddBehaviorFromModel
+GameAssembly.dll+990673                                                  - 48 85 C0              - test rax,rax
+GameAssembly.dll+990676                                                  - 0F84 11010000         - je GameAssembly.dll+99078D
+GameAssembly.dll+99067C                                                  - 4C 8B 05 EDBFA301     - mov r8,[GameAssembly.dll+23CC670]
+GameAssembly.dll+990683                                                  - 48 8B 08              - mov rcx,[rax]
+GameAssembly.dll+990686                                                  - 41 0FB6 90 28010000   - movzx edx,byte ptr [r8+00000128]
+GameAssembly.dll+99068E                                                  - 38 91 28010000        - cmp [rcx+00000128],dl
+GameAssembly.dll+990694                                                  - 0F82 F3000000         - jb GameAssembly.dll+99078D
+GameAssembly.dll+99069A                                                  - 48 8B 89 C8000000     - mov rcx,[rcx+000000C8]
+GameAssembly.dll+9906A1                                                  - 4C 39 44 D1 F8        - cmp [rcx+rdx*8-08],r8
+GameAssembly.dll+9906A6                                                  - 0F85 E1000000         - jne GameAssembly.dll+99078D
+GameAssembly.dll+9906AC                                                  - 48 8B 0D A597A301     - mov rcx,[GameAssembly.dll+23C9E58]
+GameAssembly.dll+9906B3                                                  - 48 8B E8              - mov rbp,rax
+GameAssembly.dll+9906B6                                                  - 48 8B B8 28010000     - mov rdi,[rax+00000128]
+GameAssembly.dll+9906BD                                                  - E8 4E2988FF           - call GameAssembly.dll+213010
+GameAssembly.dll+9906C2                                                  - 4C 8B 0D EFC6A101     - mov r9,[GameAssembly.dll+23ACDB8]
+GameAssembly.dll+9906C9                                                  - 49 8B D7              - mov rdx,r15
+GameAssembly.dll+9906CC                                                  - 4C 8B 05 6D1AA501     - mov r8,[GameAssembly.dll+23E2140]
+GameAssembly.dll+9906D3                                                  - 48 8B C8              - mov rcx,rax
+GameAssembly.dll+9906D6                                                  - 48 8B D8              - mov rbx,rax
+GameAssembly.dll+9906D9                                                  - E8 329392FF           - call ActivitySpectateHandler..ctor
+GameAssembly.dll+9906DE                                                  - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+9906E1                                                  - 48 8B D3              - mov rdx,rbx
+GameAssembly.dll+9906E4                                                  - 48 8B CF              - mov rcx,rdi
+GameAssembly.dll+9906E7                                                  - E8 34A21400           - call System.Delegate.Combine
+GameAssembly.dll+9906EC                                                  - 48 8B 15 6597A301     - mov rdx,[GameAssembly.dll+23C9E58]
+GameAssembly.dll+9906F3                                                  - 48 85 C0              - test rax,rax
+GameAssembly.dll+9906F6                                                  - 74 10                 - je GameAssembly.dll+990708
+GameAssembly.dll+9906F8                                                  - 48 39 10              - cmp [rax],rdx
+GameAssembly.dll+9906FB                                                  - 48 0F44 F0            - cmove rsi,rax
+GameAssembly.dll+9906FF                                                  - 48 85 F6              - test rsi,rsi
+GameAssembly.dll+990702                                                  - 0F84 8B000000         - je GameAssembly.dll+990793
+GameAssembly.dll+990708                                                  - 80 3D 2B867601 00     - cmp byte ptr [GameAssembly.dll+20F8D3A],00
+GameAssembly.dll+99070F                                                  - 48 89 B5 28010000     - mov [rbp+00000128],rsi
+GameAssembly.dll+990716                                                  - 75 19                 - jne GameAssembly.dll+990731
+GameAssembly.dll+990718                                                  - 8B 0D D2E9F600        - mov ecx,[GameAssembly.dll+18FF0F0]
+GameAssembly.dll+99071E                                                  - E8 BD2788FF           - call GameAssembly.dll+212EE0
+GameAssembly.dll+990723                                                  - 48 8B B5 28010000     - mov rsi,[rbp+00000128]
+GameAssembly.dll+99072A                                                  - C6 05 09867601 01     - mov byte ptr [GameAssembly.dll+20F8D3A],01
+GameAssembly.dll+990731                                                  - 44 8B 85 20010000     - mov r8d,[rbp+00000120]
+GameAssembly.dll+990738                                                  - 44 89 B5 20010000     - mov [rbp+00000120],r14d
+GameAssembly.dll+99073F                                                  - 48 85 F6              - test rsi,rsi
+GameAssembly.dll+990742                                                  - 74 1A                 - je GameAssembly.dll+99075E
+GameAssembly.dll+990744                                                  - 48 8B 15 4DC6A101     - mov rdx,[GameAssembly.dll+23ACD98]
+GameAssembly.dll+99074B                                                  - 45 8B CE              - mov r9d,r14d
+GameAssembly.dll+99074E                                                  - 48 89 54 24 20        - mov [rsp+20],rdx
+GameAssembly.dll+990753                                                  - 48 8B CE              - mov rcx,rsi
+GameAssembly.dll+990756                                                  - 48 8B D5              - mov rdx,rbp
+GameAssembly.dll+990759                                                  - E8 82E17600           - call GameAssembly.dll+10FE8E0
+GameAssembly.dll+99075E                                                  - 8B 8C 24 80000000     - mov ecx,[rsp+00000080]
+GameAssembly.dll+990765                                                  - 48 8B C5              - mov rax,rbp
+GameAssembly.dll+990768                                                  - 48 8B 7C 24 70        - mov rdi,[rsp+70]
+GameAssembly.dll+99076D                                                  - 48 8B 74 24 68        - mov rsi,[rsp+68]
+GameAssembly.dll+990772                                                  - 48 8B 5C 24 78        - mov rbx,[rsp+78]
+GameAssembly.dll+990777                                                  - 89 8D C4000000        - mov [rbp+000000C4],ecx
+GameAssembly.dll+99077D                                                  - 48 8B 6C 24 60        - mov rbp,[rsp+60]
+GameAssembly.dll+990782                                                  - 48 83 C4 40           - add rsp,40
+GameAssembly.dll+990786                                                  - 41 5F                 - pop r15
+GameAssembly.dll+990788                                                  - 41 5E                 - pop r14
+GameAssembly.dll+99078A                                                  - 41 5C                 - pop r12
+GameAssembly.dll+99078C                                                  - C3                    - ret 
+GameAssembly.dll+99078D                                                  - E8 BE2888FF           - call GameAssembly.dll+213050
+GameAssembly.dll+990792                                                  - CC                    - int 3 

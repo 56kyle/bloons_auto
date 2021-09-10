@@ -1,0 +1,64 @@
+
+GameAssembly.dll + 0x6AC4C0
+
+Assets.Scripts.Simulation.Input.InputManager.CanPlaceTowerAt - 48 89 5C 24 08        - mov [rsp+08],rbx
+GameAssembly.dll+6AC4C5                                      - 48 89 74 24 10        - mov [rsp+10],rsi
+GameAssembly.dll+6AC4CA                                      - 57                    - push rdi
+GameAssembly.dll+6AC4CB                                      - 48 83 EC 50           - sub rsp,50
+GameAssembly.dll+6AC4CF                                      - 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+6AC4D2                                      - 0F29 74 24 40         - movaps [rsp+40],xmm6
+GameAssembly.dll+6AC4D7                                      - 48 8B 49 18           - mov rcx,[rcx+18]
+GameAssembly.dll+6AC4DB                                      - 49 8B F9              - mov rdi,r9
+GameAssembly.dll+6AC4DE                                      - 49 8B F0              - mov rsi,r8
+GameAssembly.dll+6AC4E1                                      - 66 48 0F6E F2         - movq xmm6,rdx
+GameAssembly.dll+6AC4E6                                      - 48 85 C9              - test rcx,rcx
+GameAssembly.dll+6AC4E9                                      - 0F84 AF000000         - je GameAssembly.dll+6AC59E
+GameAssembly.dll+6AC4EF                                      - 48 8B 89 58020000     - mov rcx,[rcx+00000258]
+GameAssembly.dll+6AC4F6                                      - 48 85 C9              - test rcx,rcx
+GameAssembly.dll+6AC4F9                                      - 0F84 9F000000         - je GameAssembly.dll+6AC59E
+GameAssembly.dll+6AC4FF                                      - 4C 8B 11              - mov r10,[rcx]
+GameAssembly.dll+6AC502                                      - 4C 8B CB              - mov r9,rbx
+GameAssembly.dll+6AC505                                      - 66 48 0F7E F2         - movq rdx,xmm6
+GameAssembly.dll+6AC50A                                      - 49 8B 82 B8010000     - mov rax,[r10+000001B8]
+GameAssembly.dll+6AC511                                      - 48 89 44 24 20        - mov [rsp+20],rax
+GameAssembly.dll+6AC516                                      - 41 FF 92 B0010000     - call qword ptr [r10+000001B0]
+GameAssembly.dll+6AC51D                                      - 84 C0                 - test al,al
+GameAssembly.dll+6AC51F                                      - 74 76                 - je GameAssembly.dll+6AC597
+GameAssembly.dll+6AC521                                      - 8B 94 24 80000000     - mov edx,[rsp+00000080]
+GameAssembly.dll+6AC528                                      - C6 07 01              - mov byte ptr [rdi],01
+GameAssembly.dll+6AC52B                                      - 33 FF                 - xor edi,edi
+GameAssembly.dll+6AC52D                                      - 8B C7                 - mov eax,edi
+GameAssembly.dll+6AC52F                                      - 83 FA FF              - cmp edx,-01
+GameAssembly.dll+6AC532                                      - 74 1A                 - je GameAssembly.dll+6AC54E
+GameAssembly.dll+6AC534                                      - 48 8B 43 18           - mov rax,[rbx+18]
+GameAssembly.dll+6AC538                                      - 48 85 C0              - test rax,rax
+GameAssembly.dll+6AC53B                                      - 74 61                 - je GameAssembly.dll+6AC59E
+GameAssembly.dll+6AC53D                                      - 48 8B 48 50           - mov rcx,[rax+50]
+GameAssembly.dll+6AC541                                      - 48 85 C9              - test rcx,rcx
+GameAssembly.dll+6AC544                                      - 74 58                 - je GameAssembly.dll+6AC59E
+GameAssembly.dll+6AC546                                      - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+6AC549                                      - E8 42602E00           - call Assets.Scripts.Simulation.Towers.TowerManager.GetTowerById
+GameAssembly.dll+6AC54E                                      - 48 8B 4B 18           - mov rcx,[rbx+18]
+GameAssembly.dll+6AC552                                      - 48 85 C9              - test rcx,rcx
+GameAssembly.dll+6AC555                                      - 74 47                 - je GameAssembly.dll+6AC59E
+GameAssembly.dll+6AC557                                      - 48 8B 89 58020000     - mov rcx,[rcx+00000258]
+GameAssembly.dll+6AC55E                                      - 48 85 C9              - test rcx,rcx
+GameAssembly.dll+6AC561                                      - 74 3B                 - je GameAssembly.dll+6AC59E
+GameAssembly.dll+6AC563                                      - 48 89 7C 24 30        - mov [rsp+30],rdi
+GameAssembly.dll+6AC568                                      - 4C 8B C8              - mov r9,rax
+GameAssembly.dll+6AC56B                                      - C6 44 24 28 01        - mov byte ptr [rsp+28],01
+GameAssembly.dll+6AC570                                      - 4C 8B C6              - mov r8,rsi
+GameAssembly.dll+6AC573                                      - 66 48 0F7E F2         - movq rdx,xmm6
+GameAssembly.dll+6AC578                                      - 48 89 7C 24 20        - mov [rsp+20],rdi
+GameAssembly.dll+6AC57D                                      - E8 1E8AF8FF           - call Assets.Scripts.Simulation.Track.Map.CanPlace
+GameAssembly.dll+6AC582                                      - 48 8B 5C 24 60        - mov rbx,[rsp+60]
+GameAssembly.dll+6AC587                                      - 48 8B 74 24 68        - mov rsi,[rsp+68]
+GameAssembly.dll+6AC58C                                      - 0F28 74 24 40         - movaps xmm6,[rsp+40]
+GameAssembly.dll+6AC591                                      - 48 83 C4 50           - add rsp,50
+GameAssembly.dll+6AC595                                      - 5F                    - pop rdi
+GameAssembly.dll+6AC596                                      - C3                    - ret 
+GameAssembly.dll+6AC597                                      - C6 07 00              - mov byte ptr [rdi],00
+GameAssembly.dll+6AC59A                                      - 32 C0                 - xor al,al
+GameAssembly.dll+6AC59C                                      - EB E4                 - jmp GameAssembly.dll+6AC582
+GameAssembly.dll+6AC59E                                      - E8 AD6AB6FF           - call GameAssembly.dll+213050
+GameAssembly.dll+6AC5A3                                      - CC                    - int 3 

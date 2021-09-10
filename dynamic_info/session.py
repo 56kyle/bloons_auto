@@ -25,7 +25,6 @@ class Btd6Session:
         for hook_cls in hooks:
             hook = hook_cls.loader(self.session, self.game_assembly)
             self.hooks[hook_cls.__name__] = hook
-        sys.stdin.read()
 
     @property
     def money(self):
@@ -40,3 +39,10 @@ class Btd6Session:
             return self.hooks['PlaceableHook'].placeable
         except AttributeError:
             return False
+
+    @property
+    def location(self):
+        try:
+            return self.hooks['PlaceableHook'].location
+        except AttributeError:
+            return None

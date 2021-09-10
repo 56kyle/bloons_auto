@@ -1,0 +1,47 @@
+
+GameAssembly.dll + 0x386200
+
+Assets.Scripts.Unity.Bridge.UnityToSimulation.QueryPlacementPosition - 48 89 5C 24 10        - mov [rsp+10],rbx
+GameAssembly.dll+386205                                              - 48 89 74 24 18        - mov [rsp+18],rsi
+GameAssembly.dll+38620A                                              - 57                    - push rdi
+GameAssembly.dll+38620B                                              - 48 83 EC 70           - sub rsp,70
+GameAssembly.dll+38620F                                              - 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+386212                                              - 0F29 74 24 60         - movaps [rsp+60],xmm6
+GameAssembly.dll+386217                                              - 48 8B 4A 10           - mov rcx,[rdx+10]
+GameAssembly.dll+38621B                                              - 49 8B F1              - mov rsi,r9
+GameAssembly.dll+38621E                                              - 66 49 0F6E F0         - movq xmm6,r8
+GameAssembly.dll+386223                                              - 48 85 C9              - test rcx,rcx
+GameAssembly.dll+386226                                              - 0F84 96000000         - je GameAssembly.dll+3862C2
+GameAssembly.dll+38622C                                              - 8B 94 24 A0000000     - mov edx,[rsp+000000A0]
+GameAssembly.dll+386233                                              - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+386236                                              - E8 D59F3700           - call Assets.Scripts.Simulation.Simulation.GetInputManager
+GameAssembly.dll+38623B                                              - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+38623E                                              - 48 C7 84 24 80000000 00000000 - mov qword ptr [rsp+00000080],Mono.Security.Interface.MonoTlsProvider.get_SupportedProtocols
+GameAssembly.dll+38624A                                              - 66 48 0F7E F2         - movq rdx,xmm6
+GameAssembly.dll+38624F                                              - 48 8D 8C 24 80000000  - lea rcx,[rsp+00000080]
+GameAssembly.dll+386257                                              - 48 8B F8              - mov rdi,rax
+GameAssembly.dll+38625A                                              - E8 A1487900           - call GameAssembly.dll+B1AB00
+GameAssembly.dll+38625F                                              - 48 85 FF              - test rdi,rdi
+GameAssembly.dll+386262                                              - 74 5E                 - je GameAssembly.dll+3862C2
+GameAssembly.dll+386264                                              - 8B 8C 24 A8000000     - mov ecx,[rsp+000000A8]
+GameAssembly.dll+38626B                                              - 4C 8B CE              - mov r9,rsi
+GameAssembly.dll+38626E                                              - 4C 8B 84 24 80000000  - mov r8,[rsp+00000080]
+GameAssembly.dll+386276                                              - 48 8B D7              - mov rdx,rdi
+GameAssembly.dll+386279                                              - 48 C7 44 24 28 00000000 - mov qword ptr [rsp+28],Mono.Security.Interface.MonoTlsProvider.get_SupportedProtocols
+GameAssembly.dll+386282                                              - 89 4C 24 20           - mov [rsp+20],ecx
+GameAssembly.dll+386286                                              - 48 8D 4C 24 30        - lea rcx,[rsp+30]
+GameAssembly.dll+38628B                                              - E8 406D3200           - call Assets.Scripts.Simulation.Input.InputManager.QueryPlacementPosition
+GameAssembly.dll+386290                                              - 0F28 74 24 60         - movaps xmm6,[rsp+60]
+GameAssembly.dll+386295                                              - 4C 8D 5C 24 70        - lea r11,[rsp+70]
+GameAssembly.dll+38629A                                              - 49 8B 73 20           - mov rsi,[r11+20]
+GameAssembly.dll+38629E                                              - 0F10 00               - movups xmm0,[rax]
+GameAssembly.dll+3862A1                                              - 0F10 48 10            - movups xmm1,[rax+10]
+GameAssembly.dll+3862A5                                              - 0F11 03               - movups [rbx],xmm0
+GameAssembly.dll+3862A8                                              - F2 0F10 40 20         - movsd xmm0,[rax+20]
+GameAssembly.dll+3862AD                                              - 48 8B C3              - mov rax,rbx
+GameAssembly.dll+3862B0                                              - 0F11 4B 10            - movups [rbx+10],xmm1
+GameAssembly.dll+3862B4                                              - F2 0F11 43 20         - movsd [rbx+20],xmm0
+GameAssembly.dll+3862B9                                              - 49 8B 5B 18           - mov rbx,[r11+18]
+GameAssembly.dll+3862BD                                              - 49 8B E3              - mov rsp,r11
+GameAssembly.dll+3862C0                                              - 5F                    - pop rdi
+GameAssembly.dll+3862C1                                              - C3                    - ret 

@@ -26,7 +26,7 @@ class MoneyHook(Hook, ABC):
 
     def __init__(self, address: Union[str, int, None] = None, **kwargs):
         super(MoneyHook, self).__init__(address, **kwargs)
-        self.value = None
+        self.money = None
         self.btd6 = Pymem("BloonsTD6.exe")
         self.money_address = None
 
@@ -39,12 +39,12 @@ class MoneyHook(Hook, ABC):
             self.money_address = int(context.get('rbx'), 0) + 0x28
             try:
                 value = self.btd6.read_double(self.money_address)
-                self.value = value if value > 1 else self.value
+                self.money = value if value > 1 else self.money
             except WinAPIError:
                 pass
 
             print(f'address - {hex(self.money_address)}')
-            print(f'money - {self.value}')
+            print(f'money - {self.money}')
 
 
 

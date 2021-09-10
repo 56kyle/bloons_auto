@@ -1,0 +1,31 @@
+
+GameAssembly.dll + 0x5D59A0
+
+Assets.Scripts.Unity.UI_New.InGame.InputManager.GetCursorPosition - 40 53                 - push rbx
+GameAssembly.dll+5D59A2                                           - 48 83 EC 40           - sub rsp,40
+GameAssembly.dll+5D59A6                                           - 80 3D C20CB201 00     - cmp byte ptr [GameAssembly.dll+20F666F],00
+GameAssembly.dll+5D59AD                                           - 0F29 74 24 30         - movaps [rsp+30],xmm6
+GameAssembly.dll+5D59B2                                           - 75 12                 - jne GameAssembly.dll+5D59C6
+GameAssembly.dll+5D59B4                                           - 8B 0D EA143201        - mov ecx,[GameAssembly.dll+18F6EA4]
+GameAssembly.dll+5D59BA                                           - E8 21D5C3FF           - call GameAssembly.dll+212EE0
+GameAssembly.dll+5D59BF                                           - C6 05 A90CB201 01     - mov byte ptr [GameAssembly.dll+20F666F],01
+GameAssembly.dll+5D59C6                                           - 33 D2                 - xor edx,edx
+GameAssembly.dll+5D59C8                                           - 48 8D 4C 24 20        - lea rcx,[rsp+20]
+GameAssembly.dll+5D59CD                                           - E8 5E8A1201           - call UnityEngine.Input.get_mousePosition
+GameAssembly.dll+5D59D2                                           - 48 8B 0D 1702E301     - mov rcx,[GameAssembly.dll+2405BF0]
+GameAssembly.dll+5D59D9                                           - F2 0F10 30            - movsd xmm6,[rax]
+GameAssembly.dll+5D59DD                                           - F6 81 2F010000 02     - test byte ptr [rcx+0000012F],02
+GameAssembly.dll+5D59E4                                           - 8B 58 08              - mov ebx,[rax+08]
+GameAssembly.dll+5D59E7                                           - 74 0E                 - je GameAssembly.dll+5D59F7
+GameAssembly.dll+5D59E9                                           - 83 B9 E0000000 00     - cmp dword ptr [rcx+000000E0],00
+GameAssembly.dll+5D59F0                                           - 75 05                 - jne GameAssembly.dll+5D59F7
+GameAssembly.dll+5D59F2                                           - E8 3933BCFF           - call GameAssembly.il2cpp_runtime_class_init
+GameAssembly.dll+5D59F7                                           - 33 D2                 - xor edx,edx
+GameAssembly.dll+5D59F9                                           - F2 0F11 74 24 20      - movsd [rsp+20],xmm6
+GameAssembly.dll+5D59FF                                           - 48 8D 4C 24 20        - lea rcx,[rsp+20]
+GameAssembly.dll+5D5A04                                           - 89 5C 24 28           - mov [rsp+28],ebx
+GameAssembly.dll+5D5A08                                           - E8 9321D700           - call UnityEngine.Vector2.op_Implicit
+GameAssembly.dll+5D5A0D                                           - 0F28 74 24 30         - movaps xmm6,[rsp+30]
+GameAssembly.dll+5D5A12                                           - 48 83 C4 40           - add rsp,40
+GameAssembly.dll+5D5A16                                           - 5B                    - pop rbx
+GameAssembly.dll+5D5A17                                           - C3                    - ret 

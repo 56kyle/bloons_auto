@@ -1,0 +1,178 @@
+
+GameAssembly.dll + 0x34E120
+
+Assets.Scripts.Unity.UI_New.InGame.InGame.GetUIFromWorld - 48 8B C4              - mov rax,rsp
+GameAssembly.dll+34E123                                  - 48 89 58 18           - mov [rax+18],rbx
+GameAssembly.dll+34E127                                  - 48 89 78 20           - mov [rax+20],rdi
+GameAssembly.dll+34E12B                                  - 55                    - push rbp
+GameAssembly.dll+34E12C                                  - 48 8D 68 E8           - lea rbp,[rax-18]
+GameAssembly.dll+34E130                                  - 48 81 EC 10010000     - sub rsp,00000110
+GameAssembly.dll+34E137                                  - 80 3D 566EDA01 00     - cmp byte ptr [GameAssembly.dll+20F4F94],00
+GameAssembly.dll+34E13E                                  - 41 0FB6 F8            - movzx edi,r8l
+GameAssembly.dll+34E142                                  - 0F29 70 E8            - movaps [rax-18],xmm6
+GameAssembly.dll+34E146                                  - 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+34E149                                  - 0F29 78 D8            - movaps [rax-28],xmm7
+GameAssembly.dll+34E14D                                  - 44 0F29 40 C8         - movaps [rax-38],xmm8
+GameAssembly.dll+34E152                                  - 44 0F29 48 B8         - movaps [rax-48],xmm9
+GameAssembly.dll+34E157                                  - 44 0F29 50 A8         - movaps [rax-58],xmm10
+GameAssembly.dll+34E15C                                  - 44 0F29 58 98         - movaps [rax-68],xmm11
+GameAssembly.dll+34E161                                  - 48 89 54 24 20        - mov [rsp+20],rdx
+GameAssembly.dll+34E166                                  - 75 12                 - jne GameAssembly.dll+34E17A
+GameAssembly.dll+34E168                                  - 8B 0D 8E745A01        - mov ecx,[GameAssembly.dll+18F55FC]
+GameAssembly.dll+34E16E                                  - E8 6D4DECFF           - call GameAssembly.dll+212EE0
+GameAssembly.dll+34E173                                  - C6 05 1A6EDA01 01     - mov byte ptr [GameAssembly.dll+20F4F94],01
+GameAssembly.dll+34E17A                                  - F3 0F10 74 24 20      - movss xmm6,[rsp+20]
+GameAssembly.dll+34E180                                  - 33 C0                 - xor eax,eax
+GameAssembly.dll+34E182                                  - F3 44 0F10 0D 75F76601  - movss xmm9,[GameAssembly.dll+19BD900]
+GameAssembly.dll+34E18B                                  - F3 0F10 3D 71F76601   - movss xmm7,[GameAssembly.dll+19BD904]
+GameAssembly.dll+34E193                                  - F3 44 0F10 05 DC2F9301  - movss xmm8,[GameAssembly.dll+1C81178]
+GameAssembly.dll+34E19C                                  - 48 89 44 24 30        - mov [rsp+30],rax
+GameAssembly.dll+34E1A1                                  - 89 44 24 38           - mov [rsp+38],eax
+GameAssembly.dll+34E1A5                                  - 48 89 45 20           - mov [rbp+20],rax
+GameAssembly.dll+34E1A9                                  - F3 0F5E 35 F72F9301   - divss xmm6,[GameAssembly.dll+1C811A8]
+GameAssembly.dll+34E1B1                                  - F3 41 0F58 F1         - addss xmm6,xmm9
+GameAssembly.dll+34E1B6                                  - 40 84 FF              - test dil,dil
+GameAssembly.dll+34E1B9                                  - 74 0F                 - je GameAssembly.dll+34E1CA
+GameAssembly.dll+34E1BB                                  - F3 44 0F10 15 147A7801  - movss xmm10,[GameAssembly.dll+1AD5BD8]
+GameAssembly.dll+34E1C4                                  - 45 0F28 D8            - movaps xmm11,xmm8
+GameAssembly.dll+34E1C8                                  - EB 08                 - jmp GameAssembly.dll+34E1D2
+GameAssembly.dll+34E1CA                                  - 45 0F57 DB            - xorps xmm11,xmm11
+GameAssembly.dll+34E1CE                                  - 44 0F28 D7            - movaps xmm10,xmm7
+GameAssembly.dll+34E1D2                                  - 48 8B 0D 17790B02     - mov rcx,[GameAssembly.dll+2405AF0]
+GameAssembly.dll+34E1D9                                  - F6 81 2F010000 02     - test byte ptr [rcx+0000012F],02
+GameAssembly.dll+34E1E0                                  - 74 0D                 - je GameAssembly.dll+34E1EF
+GameAssembly.dll+34E1E2                                  - 39 81 E0000000        - cmp [rcx+000000E0],eax
+GameAssembly.dll+34E1E8                                  - 75 05                 - jne GameAssembly.dll+34E1EF
+GameAssembly.dll+34E1EA                                  - E8 41ABE4FF           - call GameAssembly.il2cpp_runtime_class_init
+GameAssembly.dll+34E1EF                                  - 45 33 C9              - xor r9d,r9d
+GameAssembly.dll+34E1F2                                  - 41 0F28 D2            - movaps xmm2,xmm10
+GameAssembly.dll+34E1F6                                  - 41 0F28 CB            - movaps xmm1,xmm11
+GameAssembly.dll+34E1FA                                  - 0F28 C6               - movaps xmm0,xmm6
+GameAssembly.dll+34E1FD                                  - E8 FE6CDE00           - call UnityEngine.Mathf.Clamp
+GameAssembly.dll+34E202                                  - F3 0F10 74 24 24      - movss xmm6,[rsp+24]
+GameAssembly.dll+34E208                                  - 44 0F28 D0            - movaps xmm10,xmm0
+GameAssembly.dll+34E20C                                  - F3 0F5E 35 8C2F9301   - divss xmm6,[GameAssembly.dll+1C811A0]
+GameAssembly.dll+34E214                                  - F3 41 0F58 F1         - addss xmm6,xmm9
+GameAssembly.dll+34E219                                  - 40 84 FF              - test dil,dil
+GameAssembly.dll+34E21C                                  - 74 0A                 - je GameAssembly.dll+34E228
+GameAssembly.dll+34E21E                                  - F3 0F10 3D 462C9301   - movss xmm7,[GameAssembly.dll+1C80E6C]
+GameAssembly.dll+34E226                                  - EB 04                 - jmp GameAssembly.dll+34E22C
+GameAssembly.dll+34E228                                  - 45 0F57 C0            - xorps xmm8,xmm8
+GameAssembly.dll+34E22C                                  - 48 8B 0D BD780B02     - mov rcx,[GameAssembly.dll+2405AF0]
+GameAssembly.dll+34E233                                  - F6 81 2F010000 02     - test byte ptr [rcx+0000012F],02
+GameAssembly.dll+34E23A                                  - 74 0E                 - je GameAssembly.dll+34E24A
+GameAssembly.dll+34E23C                                  - 83 B9 E0000000 00     - cmp dword ptr [rcx+000000E0],00
+GameAssembly.dll+34E243                                  - 75 05                 - jne GameAssembly.dll+34E24A
+GameAssembly.dll+34E245                                  - E8 E6AAE4FF           - call GameAssembly.il2cpp_runtime_class_init
+GameAssembly.dll+34E24A                                  - 45 33 C9              - xor r9d,r9d
+GameAssembly.dll+34E24D                                  - 0F28 D7               - movaps xmm2,xmm7
+GameAssembly.dll+34E250                                  - 41 0F28 C8            - movaps xmm1,xmm8
+GameAssembly.dll+34E254                                  - 0F28 C6               - movaps xmm0,xmm6
+GameAssembly.dll+34E257                                  - E8 A46CDE00           - call UnityEngine.Mathf.Clamp
+GameAssembly.dll+34E25C                                  - 45 33 C9              - xor r9d,r9d
+GameAssembly.dll+34E25F                                  - 48 8D 4C 24 30        - lea rcx,[rsp+30]
+GameAssembly.dll+34E264                                  - 0F28 D0               - movaps xmm2,xmm0
+GameAssembly.dll+34E267                                  - 41 0F28 CA            - movaps xmm1,xmm10
+GameAssembly.dll+34E26B                                  - E8 80B1FF00           - call GameAssembly.dll+13493F0
+GameAssembly.dll+34E270                                  - 48 8B 4B 78           - mov rcx,[rbx+78]
+GameAssembly.dll+34E274                                  - F3 0F10 7C 24 30      - movss xmm7,[rsp+30]
+GameAssembly.dll+34E27A                                  - 48 85 C9              - test rcx,rcx
+GameAssembly.dll+34E27D                                  - 0F84 A3010000         - je GameAssembly.dll+34E426
+GameAssembly.dll+34E283                                  - 33 D2                 - xor edx,edx
+GameAssembly.dll+34E285                                  - E8 E6938C00           - call UnityEngine.UI.Graphic.get_rectTransform
+GameAssembly.dll+34E28A                                  - 48 85 C0              - test rax,rax
+GameAssembly.dll+34E28D                                  - 0F84 93010000         - je GameAssembly.dll+34E426
+GameAssembly.dll+34E293                                  - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+34E296                                  - 48 8D 4C 24 60        - lea rcx,[rsp+60]
+GameAssembly.dll+34E29B                                  - 48 8B D0              - mov rdx,rax
+GameAssembly.dll+34E29E                                  - E8 3D68E500           - call UnityEngine.RectTransform.get_rect
+GameAssembly.dll+34E2A3                                  - 33 D2                 - xor edx,edx
+GameAssembly.dll+34E2A5                                  - 48 8D 4C 24 50        - lea rcx,[rsp+50]
+GameAssembly.dll+34E2AA                                  - 0F10 00               - movups xmm0,[rax]
+GameAssembly.dll+34E2AD                                  - 0F11 44 24 50         - movups [rsp+50],xmm0
+GameAssembly.dll+34E2B2                                  - E8 E97BE500           - call GameAssembly.dll+11A5EA0
+GameAssembly.dll+34E2B7                                  - 48 8B 4B 78           - mov rcx,[rbx+78]
+GameAssembly.dll+34E2BB                                  - 0F28 F0               - movaps xmm6,xmm0
+GameAssembly.dll+34E2BE                                  - F2 0F10 4C 24 30      - movsd xmm1,[rsp+30]
+GameAssembly.dll+34E2C4                                  - 8B 44 24 38           - mov eax,[rsp+38]
+GameAssembly.dll+34E2C8                                  - F2 0F11 4C 24 20      - movsd [rsp+20],xmm1
+GameAssembly.dll+34E2CE                                  - 89 44 24 28           - mov [rsp+28],eax
+GameAssembly.dll+34E2D2                                  - 48 85 C9              - test rcx,rcx
+GameAssembly.dll+34E2D5                                  - 0F84 4B010000         - je GameAssembly.dll+34E426
+GameAssembly.dll+34E2DB                                  - 33 D2                 - xor edx,edx
+GameAssembly.dll+34E2DD                                  - E8 8E938C00           - call UnityEngine.UI.Graphic.get_rectTransform
+GameAssembly.dll+34E2E2                                  - 48 85 C0              - test rax,rax
+GameAssembly.dll+34E2E5                                  - 0F84 3B010000         - je GameAssembly.dll+34E426
+GameAssembly.dll+34E2EB                                  - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+34E2EE                                  - 48 8D 4C 24 60        - lea rcx,[rsp+60]
+GameAssembly.dll+34E2F3                                  - 48 8B D0              - mov rdx,rax
+GameAssembly.dll+34E2F6                                  - E8 E567E500           - call UnityEngine.RectTransform.get_rect
+GameAssembly.dll+34E2FB                                  - 33 D2                 - xor edx,edx
+GameAssembly.dll+34E2FD                                  - 48 8D 4C 24 50        - lea rcx,[rsp+50]
+GameAssembly.dll+34E302                                  - 0F10 00               - movups xmm0,[rax]
+GameAssembly.dll+34E305                                  - 0F11 44 24 50         - movups [rsp+50],xmm0
+GameAssembly.dll+34E30A                                  - E8 117BE500           - call GameAssembly.dll+11A5E20
+GameAssembly.dll+34E30F                                  - F3 0F10 54 24 24      - movss xmm2,[rsp+24]
+GameAssembly.dll+34E315                                  - 48 8D 4D 20           - lea rcx,[rbp+20]
+GameAssembly.dll+34E319                                  - F3 0F59 F7            - mulss xmm6,xmm7
+GameAssembly.dll+34E31D                                  - 45 33 C9              - xor r9d,r9d
+GameAssembly.dll+34E320                                  - F3 0F59 D0            - mulss xmm2,xmm0
+GameAssembly.dll+34E324                                  - 0F28 CE               - movaps xmm1,xmm6
+GameAssembly.dll+34E327                                  - E8 E4616500           - call GameAssembly.dll+9A4510
+GameAssembly.dll+34E32C                                  - 48 8B 53 50           - mov rdx,[rbx+50]
+GameAssembly.dll+34E330                                  - F3 0F10 75 20         - movss xmm6,[rbp+20]
+GameAssembly.dll+34E335                                  - F3 44 0F10 4D 24      - movss xmm9,[rbp+24]
+GameAssembly.dll+34E33B                                  - 48 85 D2              - test rdx,rdx
+GameAssembly.dll+34E33E                                  - 0F84 FA000000         - je GameAssembly.dll+34E43E
+GameAssembly.dll+34E344                                  - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+34E347                                  - 48 8D 4D 80           - lea rcx,[rbp-80]
+GameAssembly.dll+34E34B                                  - E8 F069FF00           - call UnityEngine.Transform.get_localScale
+GameAssembly.dll+34E350                                  - 48 8B 93 88000000     - mov rdx,[rbx+00000088]
+GameAssembly.dll+34E357                                  - F3 44 0F10 00         - movss xmm8,[rax]
+GameAssembly.dll+34E35C                                  - 48 85 D2              - test rdx,rdx
+GameAssembly.dll+34E35F                                  - 0F84 D3000000         - je GameAssembly.dll+34E438
+GameAssembly.dll+34E365                                  - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+34E368                                  - 48 8D 4D 90           - lea rcx,[rbp-70]
+GameAssembly.dll+34E36C                                  - E8 BF6BFF00           - call UnityEngine.Transform.get_position
+GameAssembly.dll+34E371                                  - 48 8B 53 50           - mov rdx,[rbx+50]
+GameAssembly.dll+34E375                                  - F3 0F10 38            - movss xmm7,[rax]
+GameAssembly.dll+34E379                                  - 48 85 D2              - test rdx,rdx
+GameAssembly.dll+34E37C                                  - 0F84 B0000000         - je GameAssembly.dll+34E432
+GameAssembly.dll+34E382                                  - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+34E385                                  - 48 8D 4D A0           - lea rcx,[rbp-60]
+GameAssembly.dll+34E389                                  - E8 B269FF00           - call UnityEngine.Transform.get_localScale
+GameAssembly.dll+34E38E                                  - 48 8B 93 88000000     - mov rdx,[rbx+00000088]
+GameAssembly.dll+34E395                                  - F2 0F10 00            - movsd xmm0,[rax]
+GameAssembly.dll+34E399                                  - F2 0F11 44 24 40      - movsd [rsp+40],xmm0
+GameAssembly.dll+34E39F                                  - 48 85 D2              - test rdx,rdx
+GameAssembly.dll+34E3A2                                  - 0F84 84000000         - je GameAssembly.dll+34E42C
+GameAssembly.dll+34E3A8                                  - 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+34E3AB                                  - 48 8D 4C 24 60        - lea rcx,[rsp+60]
+GameAssembly.dll+34E3B0                                  - E8 7B6BFF00           - call UnityEngine.Transform.get_position
+GameAssembly.dll+34E3B5                                  - F3 0F10 54 24 44      - movss xmm2,[rsp+44]
+GameAssembly.dll+34E3BB                                  - 48 8D 4C 24 20        - lea rcx,[rsp+20]
+GameAssembly.dll+34E3C0                                  - F3 41 0F59 F0         - mulss xmm6,xmm8
+GameAssembly.dll+34E3C5                                  - 45 33 C9              - xor r9d,r9d
+GameAssembly.dll+34E3C8                                  - F2 0F10 00            - movsd xmm0,[rax]
+GameAssembly.dll+34E3CC                                  - F3 41 0F59 D1         - mulss xmm2,xmm9
+GameAssembly.dll+34E3D1                                  - 48 C7 44 24 20 00000000 - mov qword ptr [rsp+20],Mono.Security.Interface.MonoTlsProvider.get_SupportedProtocols
+GameAssembly.dll+34E3DA                                  - 0FC6 C0 55            - shufps xmm0,xmm0,55
+GameAssembly.dll+34E3DE                                  - F3 0F58 F7            - addss xmm6,xmm7
+GameAssembly.dll+34E3E2                                  - F3 0F58 D0            - addss xmm2,xmm0
+GameAssembly.dll+34E3E6                                  - 0F28 CE               - movaps xmm1,xmm6
+GameAssembly.dll+34E3E9                                  - E8 22616500           - call GameAssembly.dll+9A4510
+GameAssembly.dll+34E3EE                                  - 48 8B 44 24 20        - mov rax,[rsp+20]
+GameAssembly.dll+34E3F3                                  - 4C 8D 9C 24 10010000  - lea r11,[rsp+00000110]
+GameAssembly.dll+34E3FB                                  - 49 8B 5B 20           - mov rbx,[r11+20]
+GameAssembly.dll+34E3FF                                  - 49 8B 7B 28           - mov rdi,[r11+28]
+GameAssembly.dll+34E403                                  - 41 0F28 73 F0         - movaps xmm6,[r11-10]
+GameAssembly.dll+34E408                                  - 41 0F28 7B E0         - movaps xmm7,[r11-20]
+GameAssembly.dll+34E40D                                  - 45 0F28 43 D0         - movaps xmm8,[r11-30]
+GameAssembly.dll+34E412                                  - 45 0F28 4B C0         - movaps xmm9,[r11-40]
+GameAssembly.dll+34E417                                  - 45 0F28 53 B0         - movaps xmm10,[r11-50]
+GameAssembly.dll+34E41C                                  - 45 0F28 5B A0         - movaps xmm11,[r11-60]
+GameAssembly.dll+34E421                                  - 49 8B E3              - mov rsp,r11
+GameAssembly.dll+34E424                                  - 5D                    - pop rbp
+GameAssembly.dll+34E425                                  - C3                    - ret 
+GameAssembly.dll+34E426                                  - E8 254CECFF           - call GameAssembly.dll+213050
+GameAssembly.dll+34E42B                                  - CC                    - int 3 

@@ -9,20 +9,20 @@ import win32gui
 import towers
 from tower import Tower, Point
 
+from hitbox import Hitbox
 
 from dynamic_info import Btd6Session, MoneyHook, PlaceableHook
 
-from hitbox import Hitbox
-
-from PIL import Image
-
+import collections
+import keyboard
 import numpy as np
 import mouse
-import keyboard
-from window_input import Window, Key
-import collections
+import random
 import time
+
 from config import keybinds
+from PIL import Image
+from window_input import Window, Key
 
 Region = collections.namedtuple('Region', 'xi yi xf yf')
 
@@ -189,13 +189,48 @@ def get_map_img(a_map):
     im.save(f'../maps/{a_map.name}/{a_map.name}.png')
 
 
-if __name__ == '__main__':
-    btd6_session = Btd6Session(hooks=[MoneyHook])
-    while True:
-        time.sleep(1)
-        print(btd6_session.money)
+def get_map_v2(a_map, tower, regions):
+    btd6_session = Btd6Session(hooks=[PlaceableHook])
+    print('post session')
+    img_file_name = f'../maps/{a_map.name}/placement/{"land" if not tower.aquatic else "sea"}/{tower.size if tower.size != "rectangle" else tower.name}'
+    if os.path.isfile(img_file_name + '.npy'):
+        placeable = np.load(img_file_name + '.npy')
+    else:
+        placeable = np.full((1080, 1920), False)
 
-    '''
+    checked = np.full((1080, 1920), False)
+    keyboard.press_and_release(tower.keybind)
+    for region in regions:
+        points = []
+        xi, yi, xf, yf = region
+        for x in range(xi, xf):
+            for y in range(yi, yf):
+                points.append([x, y])
+
+        random.shuffle(points)
+        i = 0
+        for pair in points:
+            i += 1
+            x, y = pair
+            if not checked[y, x]:
+                    mouse.move(x, y)
+                    try:
+                        while btd6_session.location[0] != x and btd6_session.location[1] != y:
+                            print(btd6_session.location)
+                            print((x, y))
+                            mouse.move(x, y)
+                        else:
+                            placeable[y, x] = btd6_session.placeable
+                            checked[y, x] = True
+                    except TypeError:
+                        pass
+            if i > 100:
+                np.save(img_file_name, placeable)
+                Image.fromarray(placeable).save(img_file_name + '.png')
+                i = 0
+
+
+if __name__ == '__main__':
     time.sleep(4)
 
     infernal_regions = [
@@ -227,8 +262,7 @@ if __name__ == '__main__':
         #Region(32, 36, 260, 205),
     ]
 
-    get_np_placement_map(Ouch(), towers.SMALL[0], ouch_regions)
-    '''
+    get_map_v2(Ouch(), towers.SMALL[0], ouch_regions)
     # get_placement_map(towers.MEDIUM[0])
     # get_placement_map(towers.SpikeFactory)
     # get_placement_map(towers.XL[0])
