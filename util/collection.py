@@ -6,10 +6,11 @@ from ReadWriteMemory import ReadWriteMemory
 import mouse
 import pyscreeze
 
+import maps
 from map import Map
 from maps import *
 
-from tower import Tower
+from tower import Tower, Point
 from towers import *
 
 
@@ -33,11 +34,13 @@ class Collector:
 
     def click_ideal_map(self):
         self.click_expert()
+        page = 1
         time.sleep(1)
         idol = pyscreeze.locateCenterOnScreen('./collection_idol.png', confidence=.6)
         print(f'Moving to idol at - {idol}')
         if not idol:
             self.click_expert()
+            page = 2
             time.sleep(1)
             idol = pyscreeze.locateCenterOnScreen('./collection_idol.png', confidence=.6)
         print(idol)
@@ -46,6 +49,7 @@ class Collector:
         time.sleep(.1)
         mouse.click()
         time.sleep(.1)
+        return page, idol
 
     def click_play(self):
         mouse.move(*self.play_button)
@@ -68,14 +72,36 @@ class Collector:
 
 if __name__ == '__main__':
     time.sleep(5)
-    x, y = mouse.get_position()
 
-
-
-    '''
     collector = Collector()
-    collector.click_play()
-    collector.click_ideal_map()
-    collector.click_easy()
-    collector.click_standard()
-    '''
+    while True:
+        collector.click_play()
+        time.sleep(1)
+        collector.click_expert()
+        time.sleep(1)
+        #page, point_chosen = collector.click_ideal_map()
+        page = 1
+        point_chosen = Point(1400, 570)
+        mouse.move(*point_chosen)
+        time.sleep(.2)
+        mouse.click()
+        time.sleep(1)
+        collector.click_easy()
+        time.sleep(1)
+        collector.click_standard()
+        time.sleep(5)
+        '''
+        x, y = Map.point_to_map(point_chosen)
+        for map_class in maps.ALL:
+            if map_class.difficulty == 'Expert':
+                if map_class.page == page and map_class.placement == [x, y]:
+                    map = map_class()
+                    break
+        '''
+        collector.current_map = Workshop()
+        collector.current_map.play_collection()
+
+
+
+
+

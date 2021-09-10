@@ -6,4 +6,6 @@ class Infernal(Map):
         super().__init__(*args, **kwargs)
         self.name = 'infernal'
         self.difficulty = 'expert'
+        self.page = 1
+        self.placement = [0, 0]
 

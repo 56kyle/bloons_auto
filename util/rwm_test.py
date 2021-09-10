@@ -1,12 +1,15 @@
-
-
+import psutil
+from ReadWriteMemory import ReadWriteMemory
+import win32api
+import win32con
 
 
 def test():
     rwm = ReadWriteMemory()
     for pid in rwm.enumerate_processes():
         process = psutil.Process(pid)
-        if 'ame' in process.name() or 'oon' in process.name():
+        if 'oon' in process.name():
+            print(pid)
             print(f'{process.name()} - ')
             print('\tfiles - ')
             for file in process.open_files():

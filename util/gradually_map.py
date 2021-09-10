@@ -1,4 +1,5 @@
 import os
+import sys
 
 from maps import *
 from map import Map
@@ -7,6 +8,9 @@ import win32gui
 
 import towers
 from tower import Tower, Point
+
+
+from dynamic_info import Btd6Session, MoneyHook, PlaceableHook
 
 from hitbox import Hitbox
 
@@ -94,33 +98,89 @@ def get_np_placement_map(a_map, tower, regions):
     else:
         placeable = np.full((1080, 1920), False)
 
+    checked = np.full((1080, 1920), False)
+
     keyboard.press_and_release(tower.keybind)
     for region in regions:
         xi, yi, xf, yf = region
-        gx = int(16 / 2)
-        gy = int(12 / 2)
+        #gx = int(16 / 2)
+        #gy = int(12 / 2)
+        gx = 16
+        gy = 12
         while not (gx == 1 and gy == 1):
             for x in range(xi, xf, gx):
                 for y in range(yi, yf, gy):
-                    print('=====')
+                    #print('=====')
                     if mouse.get_position() == (0, 0):
                         print('fuck')
                         return
-                    if tower.can_place_quick(Point(x, y), np_im, manual_delay_locations):
-                        print('can place')
-                        if placeable[y - gy, x - gx] and placeable[y - gy, x] and placeable[y, x - gx]:
-                            placeable[y - gy:y, x - gx:x] = np.full((gy, gx), True)
-                        placeable[y, x] = True
-                    else:
-                        print("can't place")
-                        if not placeable[y - gy, x - gx] and not placeable[y - gy, x] and not placeable[y, x - gx]:
-                            placeable[y - gy:y, x - gx:x] = np.full((gy, gx), False)
-                        placeable[y, x] = False
+                    if not checked[y, x]:
+                        print(f'not checked[{y}, {x}]')
+                        placeable[y, x] = tower.can_place_quick(Point(x, y), np_im, manual_delay_locations)
+                    quadrants = [
+                        [gx, gy],  # Top Left
+                        [-gx, gy],  # Top Right
+                        [gx, -gy],  # Bot Left
+                        [-gx, -gy],  # Bot Right
+                    ]
+                    for pair in quadrants:
+                        print(f'pair - {pair}')
+                        if gx > 2 and gy > 2 and not checked[y - int(abs(pair[1] / pair[1])), x - int(abs(pair[0] / pair[0]))]:
+                            checked, placeable = should_fill_quad(checked, placeable, x, y, pair[0], pair[1])
+                        else:
+                            print('else')
                 np.save(img_file_name, placeable)
                 Image.fromarray(placeable).save(img_file_name + '.png')
             gx = int(gx / 2) if gx != 1 else gx
             gy = int(gy / 2) if gy != 1 else gy
 
+
+def should_fill_quad(checked, placeable, x, y, gx, gy):
+    """Checks if a given rectangle can be filled in and does so if possible"""
+    #print('should_fill_quad')
+    #print(f'\tx - {x}')
+    #print(f'\ty - {y}')
+    #print(f'\tgx - {gx}')
+    #print(f'\tgy - {gy}')
+    point_one = checked[y - gy, x - gx] and placeable[y - gy, x - gx]
+    point_two = checked[y, x - gx] and placeable[y, x - gx]
+    point_three = checked[y - gy, x] and placeable[y - gy, x]
+    #print(f'\tpoint_one - {point_one}')
+    #print(f'\tpoint_tow - {point_two}')
+    #print(f'\tpoint_threee - {point_three}')
+    desired_result = placeable[y, x]
+    #print(f'\tdesired_result = {desired_result}')
+    if point_one == desired_result and point_two == desired_result and point_three == desired_result:
+        placeable[y - gy:y, x - gx:x] = np.full((abs(gy), abs(gx)), desired_result)
+        checked[y - gy:y, x - gx:x] = np.full((abs(gy), abs(gx)), True)
+
+    return checked, placeable
+
+def get_np_placement_map_one(a_map, tower, regions):
+    manual_delay_locations = get_changing()
+    im = pyscreeze.screenshot()
+    img_file_name = f'../maps/{a_map.name}/placement/{"land" if not tower.aquatic else "sea"}/{tower.size if tower.size != "rectangle" else tower.name}'
+    im.save(f'../maps/{a_map.name}/{a_map.name}.png')
+    np_im = np.array(im)
+    if os.path.isfile(img_file_name + '.npy'):
+        placeable = np.load(img_file_name + '.npy')
+    else:
+        placeable = np.full((1080, 1920), False)
+
+    keyboard.press_and_release(tower.keybind)
+    for region in regions:
+        xi, yi, xf, yf = region
+        #gx = int(16 / 2)
+        #gy = int(12 / 2)
+        for x in range(xi, xf):
+            for y in range(yi, yf):
+                #print('=====')
+                if mouse.get_position() == (0, 0):
+                    print('fuck')
+                    return
+                placeable[y, x] = tower.can_place_quick(Point(x, y), np_im, manual_delay_locations)
+            np.save(img_file_name, placeable)
+            Image.fromarray(placeable).save(img_file_name + '.png')
 
 def get_map_img(a_map):
     mouse.move(1910, 1070)
@@ -130,6 +190,12 @@ def get_map_img(a_map):
 
 
 if __name__ == '__main__':
+    btd6_session = Btd6Session(hooks=[MoneyHook])
+    while True:
+        time.sleep(1)
+        print(btd6_session.money)
+
+    '''
     time.sleep(4)
 
     infernal_regions = [
@@ -152,7 +218,17 @@ if __name__ == '__main__':
     ravine_regions = [
         Region(32, 36, 1600, 1050)
     ]
-    get_np_placement_map(DarkCastle(), towers.SMALL[0], dark_castle_regions)
+    quad_regions = [
+        Region(32, 36, 1600, 1050)
+    ]
+
+    ouch_regions = [
+        Region(32, 36, 1600, 1050),
+        #Region(32, 36, 260, 205),
+    ]
+
+    get_np_placement_map(Ouch(), towers.SMALL[0], ouch_regions)
+    '''
     # get_placement_map(towers.MEDIUM[0])
     # get_placement_map(towers.SpikeFactory)
     # get_placement_map(towers.XL[0])

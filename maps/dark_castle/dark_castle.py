@@ -6,4 +6,6 @@ class DarkCastle(Map):
         super().__init__(*args, **kwargs)
         self.name = 'dark_castle'
         self.difficulty = 'expert'
+        self.page = 2
+        self.placement = [1, 1]
 

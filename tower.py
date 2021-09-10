@@ -78,7 +78,6 @@ def get_pixel(i_x, i_y, win=None):
     return (i_colour & 0xff), ((i_colour >> 8) & 0xff), ((i_colour >> 16) & 0xff)
 
 
-
 class Tower:
     """Base class for all towers"""
     name = None
@@ -112,13 +111,15 @@ class Tower:
         self.keybind = keybinds.get(self.name)
         self.price = kwargs.get('price')
         self.value = self.price
-        self.place()
-        upgrades = kwargs.get('upgrades')
-        self.upgrades = [0, 0, 0]
-        if upgrades:
-            self.assign_upgrades(upgrades)
+        if self.place():
+            upgrades = kwargs.get('upgrades')
+            self.upgrades = [0, 0, 0]
+            if upgrades:
+                self.assign_upgrades(upgrades)
+        else:
+            del self
 
-    def __del__(self):
+    def teardown(self):
         self.select()
         keyboard.press_and_release(keybinds['sell'], .1)
 
@@ -145,8 +146,23 @@ class Tower:
             img_new.save(img_file_name)
 
     @classmethod
+    def have_funds(cls):
+        mouse.move(900, 500)
+        time.sleep(.3)
+        img_i = pyscreeze.screenshot()
+        keyboard.press_and_release(cls.keybind, .2)
+        time.sleep(.2)
+        img_f = pyscreeze.screenshot()
+        cls.deselect()
+        if img_i.getpixel(900, 510) == img_f.getpixel(900, 510):
+            return False
+        else:
+            return True
+
+    @classmethod
     def can_place(cls, *args, **kwargs):
         return cls.can_place_quick(*args, **kwargs)
+        #return cls._can_place(*args, **kwargs)
 
     @staticmethod
     def coerce_to_point(location: Union[Point, Iterable]):
@@ -176,8 +192,8 @@ class Tower:
             measuring_point = cls.get_measuring_point(location, backup=True)
         before_px = [*before[measuring_point.y, measuring_point.x]]
         after_px = [*np.array(get_pixel(*measuring_point))]
-        print(f'before - {before_px}')
-        print(f'after - {after_px}')
+        #print(f'before - {before_px}')
+        #print(f'after - {after_px}')
         if after_px[0] - before_px[0] > after_px[2] - before_px[2]:
             return False
         else:
@@ -187,17 +203,19 @@ class Tower:
     def quick_move(cls, location: Point, measuring_point: Point, before: np.ndarray, area_to_manual_delay: Union[np.ndarray, None]):
         current_px = before[measuring_point.y, measuring_point.x]
         t1 = time.time()
+        '''
         if area_to_manual_delay is not None:
             if area_to_manual_delay[measuring_point.y, measuring_point.x]:
                 mouse.move(location.x, location.y)
                 time.sleep(.04)
                 return
+        '''
 
         while [*current_px] == [*before[measuring_point.y, measuring_point.x]]:
             if mouse.get_position() == (0, 0, 0):
                 break
-            if time.time() - t1 > .15:
-                break
+            if time.time() - t1 > .09:
+                raise PixelNotChangingError('Pixel has been static')
             mouse.move(location.x, location.y)
             current_px = np.array(get_pixel(*measuring_point))
 
@@ -217,9 +235,9 @@ class Tower:
                 measuring_point = Point(location.x + cls.range, location.y)
         else:
             if .5 - y_fraction < 0:
-                measuring_point = Point(location.x, location.y - (cls.range * .5))
+                measuring_point = Point(location.x, location.y - int(cls.range * .5))
             else:
-                measuring_point = Point(location.x, location.y + (cls.range * .5))
+                measuring_point = Point(location.x, location.y + int(cls.range * .5))
         return measuring_point
 
     @classmethod
@@ -263,16 +281,18 @@ class Tower:
     def place(self):
         if self.can_place(self.location):
             mouse.move(*self.location)
-            time.sleep(.01)
-            keyboard.press_and_release(self.keybind, .03)
-            time.sleep(.01)
+            time.sleep(.05)
+            keyboard.press_and_release(self.keybind, .1)
+            time.sleep(.05)
             mouse.click()
             return True
         return False
 
     @staticmethod
     def deselect():
-        keyboard.press_and_release('escape', .03)
+        time.sleep(.1)
+        keyboard.press_and_release('escape', .1)
+        time.sleep(.1)
         '''
         x, y = Tower.tower_placement_button
         mouse.move(x + 10, y - 10)
@@ -289,11 +309,14 @@ class Tower:
 
     def assign_upgrades(self, desired_upgrades):
         self.select()
+        time.sleep(.1)
         for i in range(3):
             for _ in range(desired_upgrades[i] - self.upgrades[i]):
-                keyboard.press_and_release(keybinds['upgrade_path_' + str(i + 1)], .1)
-                time.sleep(.1)
+                keyboard.press_and_release(keybinds['upgrade_path_' + str(i + 1)], .2)
+                time.sleep(.2)
         self.upgrades = desired_upgrades
+        time.sleep(.1)
+        self.deselect()
 
     def relocate_lock(self, location):
         mouse.move(*self.target_type_button)

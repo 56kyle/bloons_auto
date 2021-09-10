@@ -6,4 +6,6 @@ class Ouch(Map):
         super().__init__(*args, **kwargs)
         self.name = 'ouch'
         self.difficulty = 'expert'
+        self.page = 2
+        self.placement = [0, 0]
 

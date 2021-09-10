@@ -6,4 +6,6 @@ class BloodyPuddles(Map):
         super().__init__(*args, **kwargs)
         self.name = 'bloody_puddles'
         self.difficulty = 'expert'
+        self.page = 1
+        self.placement = [1, 0]
 

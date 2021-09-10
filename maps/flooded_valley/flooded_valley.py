@@ -6,4 +6,6 @@ class FloodedValley(Map):
         super().__init__(*args, **kwargs)
         self.name = 'flooded_valley'
         self.difficulty = 'expert'
+        self.page = 1
+        self.placement = [2, 1]
 

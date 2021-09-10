@@ -6,4 +6,6 @@ class Sanctuary(Map):
         super().__init__(*args, **kwargs)
         self.name = 'sanctuary'
         self.difficulty = 'expert'
+        self.page = 1
+        self.placement = [0, 1]
 

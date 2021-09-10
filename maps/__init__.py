@@ -55,3 +55,145 @@ from .dark_castle import DarkCastle
 from .muddy_puddles import MuddyPuddles
 from .ouch import Ouch
 
+
+ALL = [
+    MonkeyMeadow,
+    TreeStump,
+    TownCenter,
+    Resort,
+    Skates,
+    LotusIsland,
+    CandyFalls,
+    WinterPark,
+    Carved,
+    ParkPath,
+    AlpineRun,
+    FrozenOver,
+    InTheLoop,
+    Cubism,
+    FourCircles,
+    Hedge,
+    EndOfTheRoad,
+    Logs,
+    Balance,
+    Encrypted,
+    Bazaar,
+    AdorasTemple,
+    SpringSpring,
+    KartsNDarts,
+    MoonLanding,
+    Haunted,
+    Downstream,
+    FiringRange,
+    Cracked,
+    Streambed,
+    Chutes,
+    Rake,
+    SpiceIslands,
+    BloonariusPrime,
+    XFactor,
+    Mesa,
+    Geared,
+    Spillway,
+    Cargo,
+    PatsPond,
+    Peninsula,
+    HighFinance,
+    AnotherBrick,
+    OffTheCoast,
+    Cornfield,
+    Underground,
+    Sanctuary,
+    Ravine,
+    FloodedValley,
+    Infernal,
+    BloodyPuddles,
+    Workshop,
+    Quad,
+    DarkCastle,
+    MuddyPuddles,
+    Ouch,
+]
+
+BEGINNER = [
+    MonkeyMeadow,
+    TreeStump,
+    TownCenter,
+    Resort,
+    Skates,
+    LotusIsland,
+    CandyFalls,
+    WinterPark,
+    Carved,
+    ParkPath,
+    AlpineRun,
+    FrozenOver,
+    InTheLoop,
+    Cubism,
+    FourCircles,
+    Hedge,
+    EndOfTheRoad,
+    Logs,
+]
+
+INTERMEDIATE = [
+    Balance,
+    Encrypted,
+    Bazaar,
+    AdorasTemple,
+    SpringSpring,
+    KartsNDarts,
+    MoonLanding,
+    Haunted,
+    Downstream,
+    FiringRange,
+    Cracked,
+    Streambed,
+    Chutes,
+    Rake,
+    SpiceIslands,
+    BloonariusPrime,
+]
+
+ADVANCED = [
+    XFactor,
+    Mesa,
+    Geared,
+    Spillway,
+    Cargo,
+    PatsPond,
+    Peninsula,
+    HighFinance,
+    AnotherBrick,
+    OffTheCoast,
+    Cornfield,
+    Underground,
+]
+
+EXPERT = [
+    Sanctuary,
+    Ravine,
+    FloodedValley,
+    Infernal,
+    BloodyPuddles,
+    Workshop,
+    Quad,
+    DarkCastle,
+    MuddyPuddles,
+    Ouch,
+]
+
+DIFFICULTIES = [
+    BEGINNER,
+    INTERMEDIATE,
+    ADVANCED,
+    EXPERT,
+]
+
+for map in ALL:
+    map.ALL = ALL
+    map.DIFFICULTIES = DIFFICULTIES
+    map.BEGINNER = BEGINNER
+    map.INTERMEDIATE = INTERMEDIATE
+    map.ADVANCED = ADVANCED
+    map.EXPERT = EXPERT
