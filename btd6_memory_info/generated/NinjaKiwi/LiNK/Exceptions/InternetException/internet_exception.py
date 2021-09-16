@@ -1,0 +1,1 @@
+class InternetException:	pass

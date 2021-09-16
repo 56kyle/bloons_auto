@@ -1,0 +1,1 @@
+class Scripting:	pass

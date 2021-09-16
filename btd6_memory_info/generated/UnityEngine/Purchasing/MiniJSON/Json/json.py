@@ -1,0 +1,1 @@
+class Json:	pass

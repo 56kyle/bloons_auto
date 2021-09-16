@@ -1,0 +1,2 @@
+symbols = []
+exports = [{'type': 'function', 'name': 'DirectInput8Create', 'address': '0x7ffb2ac62230'}, {'type': 'function', 'name': 'DllCanUnloadNow', 'address': '0x7ffb2ac75220'}, {'type': 'function', 'name': 'DllGetClassObject', 'address': '0x7ffb2ac75330'}, {'type': 'function', 'name': 'DllRegisterServer', 'address': '0x7ffb2ac84740'}, {'type': 'function', 'name': 'DllUnregisterServer', 'address': '0x7ffb2ac849c0'}, {'type': 'function', 'name': 'GetdfDIJoystick', 'address': '0x7ffb2ac6a1c0'}]

@@ -1,0 +1,1 @@
+class DownloadClanActivityCountsResult_t:	pass

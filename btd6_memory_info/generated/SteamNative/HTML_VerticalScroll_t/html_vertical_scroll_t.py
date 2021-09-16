@@ -1,0 +1,1 @@
+class HTML_VerticalScroll_t:	pass

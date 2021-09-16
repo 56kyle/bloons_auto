@@ -1,0 +1,1 @@
+class Messaging:	pass

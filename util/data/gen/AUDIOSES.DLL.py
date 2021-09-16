@@ -1,0 +1,2 @@
+symbols = []
+exports = [{'type': 'function', 'name': 'DllCanUnloadNow', 'address': '0x7ffb350402c0'}, {'type': 'function', 'name': 'DllGetActivationFactory', 'address': '0x7ffb3503ef00'}, {'type': 'function', 'name': 'DllGetClassObject', 'address': '0x7ffb35050fe0'}, {'type': 'function', 'name': 'DllRegisterServer', 'address': '0x7ffb35079000'}, {'type': 'function', 'name': 'DllUnregisterServer', 'address': '0x7ffb350790b0'}]

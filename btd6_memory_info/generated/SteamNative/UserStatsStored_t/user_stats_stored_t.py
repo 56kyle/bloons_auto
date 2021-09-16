@@ -1,0 +1,1 @@
+class UserStatsStored_t:	pass

@@ -1,0 +1,1 @@
+class AddAppDependencyResult_t:	pass

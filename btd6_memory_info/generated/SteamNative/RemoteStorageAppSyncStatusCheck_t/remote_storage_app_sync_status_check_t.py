@@ -1,0 +1,1 @@
+class RemoteStorageAppSyncStatusCheck_t:	pass

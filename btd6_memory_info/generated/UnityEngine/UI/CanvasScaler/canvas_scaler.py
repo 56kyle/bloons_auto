@@ -1,0 +1,1 @@
+class CanvasScaler:	pass

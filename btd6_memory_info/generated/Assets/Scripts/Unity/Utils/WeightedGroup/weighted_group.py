@@ -1,0 +1,1 @@
+class WeightedGroup:	pass

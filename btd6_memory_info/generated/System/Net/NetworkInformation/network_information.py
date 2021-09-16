@@ -1,0 +1,1 @@
+class NetworkInformation:	pass

@@ -1,0 +1,1 @@
+class DailyChallengeModel:	pass

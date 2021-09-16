@@ -1,0 +1,2 @@
+symbols = []
+exports = [{'type': 'function', 'name': 'CreateWindowInformation', 'address': '0x7ffb340c4470'}, {'type': 'function', 'name': 'CreateWindowLayout', 'address': '0x7ffb340c4600'}, {'type': 'function', 'name': 'DllGetActivationFactory', 'address': '0x7ffb340d01d0'}, {'type': 'function', 'name': 'DllGetClassObject', 'address': '0x7ffb340dfa50'}]

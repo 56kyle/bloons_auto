@@ -1,0 +1,1 @@
+class NCalcLexer:	pass

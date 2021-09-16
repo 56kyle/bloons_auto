@@ -1,0 +1,1 @@
+class LobbyGameCreated_t:	pass

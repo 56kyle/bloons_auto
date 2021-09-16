@@ -1,0 +1,1 @@
+class AbilityButton:	pass

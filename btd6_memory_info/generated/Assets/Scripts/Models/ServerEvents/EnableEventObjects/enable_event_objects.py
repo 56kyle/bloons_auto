@@ -1,0 +1,1 @@
+class EnableEventObjects:	pass

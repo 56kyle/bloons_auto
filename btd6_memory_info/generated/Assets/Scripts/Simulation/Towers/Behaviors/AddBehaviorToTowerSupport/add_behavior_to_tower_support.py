@@ -1,0 +1,1 @@
+class AddBehaviorToTowerSupport:	pass

@@ -1,0 +1,1 @@
+class InGameTutorial:	pass

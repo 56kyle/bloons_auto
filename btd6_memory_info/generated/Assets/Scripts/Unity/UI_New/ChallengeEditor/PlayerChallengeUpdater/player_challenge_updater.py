@@ -1,0 +1,1 @@
+class PlayerChallengeUpdater:	pass

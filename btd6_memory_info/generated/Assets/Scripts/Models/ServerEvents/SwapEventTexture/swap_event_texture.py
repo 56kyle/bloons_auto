@@ -1,0 +1,1 @@
+class SwapEventTexture:	pass

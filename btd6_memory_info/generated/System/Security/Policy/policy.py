@@ -1,0 +1,1 @@
+class Policy:	pass

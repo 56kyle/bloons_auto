@@ -1,0 +1,1 @@
+class SteamServersConnected_t:	pass

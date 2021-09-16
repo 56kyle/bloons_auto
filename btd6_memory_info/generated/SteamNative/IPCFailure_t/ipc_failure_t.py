@@ -1,0 +1,1 @@
+class IPCFailure_t:	pass

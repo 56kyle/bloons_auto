@@ -1,0 +1,1 @@
+class WritableExtensions:	pass

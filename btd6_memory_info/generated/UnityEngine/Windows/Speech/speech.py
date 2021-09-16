@@ -1,0 +1,1 @@
+class Speech:	pass

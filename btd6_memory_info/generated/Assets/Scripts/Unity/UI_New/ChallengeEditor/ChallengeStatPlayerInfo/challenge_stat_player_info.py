@@ -1,0 +1,1 @@
+class ChallengeStatPlayerInfo:	pass

@@ -1,0 +1,1 @@
+class RemoteStorageFileWriteAsyncComplete_t:	pass

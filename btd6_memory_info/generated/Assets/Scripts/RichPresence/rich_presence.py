@@ -1,0 +1,1 @@
+class RichPresence:	pass

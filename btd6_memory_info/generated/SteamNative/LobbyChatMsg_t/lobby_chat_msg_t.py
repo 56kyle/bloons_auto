@@ -1,0 +1,1 @@
+class LobbyChatMsg_t:	pass

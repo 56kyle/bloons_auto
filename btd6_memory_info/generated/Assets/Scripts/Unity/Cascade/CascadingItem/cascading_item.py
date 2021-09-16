@@ -1,0 +1,1 @@
+class CascadingItem:	pass

@@ -1,0 +1,1 @@
+class RemoveAppDependencyResult_t:	pass

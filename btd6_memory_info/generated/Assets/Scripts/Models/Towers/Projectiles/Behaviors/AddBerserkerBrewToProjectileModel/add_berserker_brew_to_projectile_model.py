@@ -1,0 +1,1 @@
+class AddBerserkerBrewToProjectileModel:	pass

@@ -1,0 +1,1 @@
+class SynchronizationContextAwaitTaskContinuation:	pass

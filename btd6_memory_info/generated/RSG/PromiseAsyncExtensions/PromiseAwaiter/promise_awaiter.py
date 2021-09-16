@@ -1,0 +1,1 @@
+class PromiseAwaiter:	pass

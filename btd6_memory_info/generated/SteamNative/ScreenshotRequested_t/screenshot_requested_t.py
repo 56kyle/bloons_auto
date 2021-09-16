@@ -1,0 +1,1 @@
+class ScreenshotRequested_t:	pass

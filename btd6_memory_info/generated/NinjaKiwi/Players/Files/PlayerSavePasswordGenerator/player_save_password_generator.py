@@ -1,0 +1,1 @@
+class PlayerSavePasswordGenerator:	pass

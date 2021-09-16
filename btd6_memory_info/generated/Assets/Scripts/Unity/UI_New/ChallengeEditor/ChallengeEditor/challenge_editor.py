@@ -1,0 +1,1 @@
+class ChallengeEditor:	pass

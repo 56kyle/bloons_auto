@@ -1,0 +1,1 @@
+class HeroInGameScreen:	pass

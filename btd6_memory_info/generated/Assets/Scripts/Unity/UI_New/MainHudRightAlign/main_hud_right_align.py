@@ -1,0 +1,1 @@
+class MainHudRightAlign:	pass

@@ -1,0 +1,1 @@
+class XmlWellFormedWriter:	pass

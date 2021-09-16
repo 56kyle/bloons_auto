@@ -1,0 +1,1 @@
+class EtwSession:	pass

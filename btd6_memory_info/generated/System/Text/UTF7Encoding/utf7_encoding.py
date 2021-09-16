@@ -1,0 +1,1 @@
+class UTF7Encoding:	pass

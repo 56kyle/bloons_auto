@@ -1,0 +1,1 @@
+class FactoryFactory:	pass

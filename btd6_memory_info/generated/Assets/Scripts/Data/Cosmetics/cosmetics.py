@@ -1,0 +1,1 @@
+class Cosmetics:	pass

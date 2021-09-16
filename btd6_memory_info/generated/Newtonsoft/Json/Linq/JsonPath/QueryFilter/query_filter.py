@@ -1,0 +1,1 @@
+class QueryFilter:	pass

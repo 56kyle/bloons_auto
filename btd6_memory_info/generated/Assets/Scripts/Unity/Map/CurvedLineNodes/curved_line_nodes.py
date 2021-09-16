@@ -1,0 +1,1 @@
+class CurvedLineNodes:	pass

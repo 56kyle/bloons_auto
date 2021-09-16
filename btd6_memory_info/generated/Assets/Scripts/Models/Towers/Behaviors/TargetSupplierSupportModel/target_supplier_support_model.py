@@ -1,0 +1,1 @@
+class TargetSupplierSupportModel:	pass

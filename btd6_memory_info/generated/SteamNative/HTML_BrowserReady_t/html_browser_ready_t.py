@@ -1,0 +1,1 @@
+class HTML_BrowserReady_t:	pass

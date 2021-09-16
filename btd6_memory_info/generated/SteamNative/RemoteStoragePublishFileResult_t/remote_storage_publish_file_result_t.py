@@ -1,0 +1,1 @@
+class RemoteStoragePublishFileResult_t:	pass

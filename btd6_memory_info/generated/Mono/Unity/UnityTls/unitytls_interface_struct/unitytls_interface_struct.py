@@ -1,0 +1,1 @@
+class unitytls_interface_struct:	pass

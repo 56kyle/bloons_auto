@@ -1,0 +1,1 @@
+class SteamInventoryRequestPricesResult_t:	pass

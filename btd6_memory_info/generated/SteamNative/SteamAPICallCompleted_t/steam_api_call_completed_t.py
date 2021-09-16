@@ -1,0 +1,1 @@
+class SteamAPICallCompleted_t:	pass

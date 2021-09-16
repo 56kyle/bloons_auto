@@ -1,0 +1,1 @@
+class RuntimeType:	pass

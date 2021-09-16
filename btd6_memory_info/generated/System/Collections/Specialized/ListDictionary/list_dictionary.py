@@ -1,0 +1,1 @@
+class ListDictionary:	pass

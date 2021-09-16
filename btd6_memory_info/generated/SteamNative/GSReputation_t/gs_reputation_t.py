@@ -1,0 +1,1 @@
+class GSReputation_t:	pass

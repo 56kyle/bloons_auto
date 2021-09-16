@@ -1,0 +1,2 @@
+symbols = []
+exports = [{'type': 'function', 'name': 'ActivateAudioInterfaceAsync', 'address': '0x7ffb35599690'}, {'type': 'function', 'name': 'DllCanUnloadNow', 'address': '0x7ffb355787f0'}, {'type': 'function', 'name': 'DllGetClassObject', 'address': '0x7ffb35578340'}, {'type': 'function', 'name': 'DllRegisterServer', 'address': '0x7ffb3559e990'}, {'type': 'function', 'name': 'DllUnregisterServer', 'address': '0x7ffb3559ea00'}]

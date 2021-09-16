@@ -1,0 +1,1 @@
+class FileDetailsResult_t:	pass

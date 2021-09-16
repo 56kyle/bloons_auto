@@ -1,0 +1,1 @@
+class MyNK_GetGameStore:	pass

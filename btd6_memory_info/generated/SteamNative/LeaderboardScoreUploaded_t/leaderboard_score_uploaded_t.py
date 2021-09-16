@@ -1,0 +1,1 @@
+class LeaderboardScoreUploaded_t:	pass

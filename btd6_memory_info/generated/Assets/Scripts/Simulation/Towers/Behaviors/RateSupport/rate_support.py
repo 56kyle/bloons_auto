@@ -1,0 +1,1 @@
+class RateSupport:	pass

@@ -1,0 +1,1 @@
+class GameLobbyJoinRequested_t:	pass

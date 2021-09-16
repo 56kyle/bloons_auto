@@ -1,0 +1,1 @@
+class GlobalAchievementPercentagesReady_t:	pass

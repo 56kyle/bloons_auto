@@ -1,0 +1,1 @@
+class ClanOfficerListResponse_t:	pass

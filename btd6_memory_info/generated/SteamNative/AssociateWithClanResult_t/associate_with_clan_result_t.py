@@ -1,0 +1,1 @@
+class AssociateWithClanResult_t:	pass

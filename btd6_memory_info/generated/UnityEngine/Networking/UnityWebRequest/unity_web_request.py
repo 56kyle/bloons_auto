@@ -1,0 +1,1 @@
+class UnityWebRequest:	pass

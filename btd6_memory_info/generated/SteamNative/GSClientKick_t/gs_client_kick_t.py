@@ -1,0 +1,1 @@
+class GSClientKick_t:	pass

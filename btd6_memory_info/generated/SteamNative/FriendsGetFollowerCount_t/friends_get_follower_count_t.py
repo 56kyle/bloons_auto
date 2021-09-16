@@ -1,0 +1,1 @@
+class FriendsGetFollowerCount_t:	pass

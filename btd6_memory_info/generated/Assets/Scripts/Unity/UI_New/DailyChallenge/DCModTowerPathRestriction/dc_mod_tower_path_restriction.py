@@ -1,0 +1,1 @@
+class DCModTowerPathRestriction:	pass

@@ -1,0 +1,1 @@
+class Nearby:	pass

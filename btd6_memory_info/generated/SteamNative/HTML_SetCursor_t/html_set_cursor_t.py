@@ -1,0 +1,1 @@
+class HTML_SetCursor_t:	pass

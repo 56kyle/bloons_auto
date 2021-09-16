@@ -1,0 +1,1 @@
+class HTML_HideToolTip_t:	pass

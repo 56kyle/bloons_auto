@@ -1,0 +1,1 @@
+class TowerAssetChanges:	pass

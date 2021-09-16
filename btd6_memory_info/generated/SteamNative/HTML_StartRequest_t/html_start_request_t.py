@@ -1,0 +1,1 @@
+class HTML_StartRequest_t:	pass

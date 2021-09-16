@@ -1,0 +1,1 @@
+class ComancheDefence:	pass

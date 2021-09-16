@@ -1,0 +1,1 @@
+class Lobby:	pass

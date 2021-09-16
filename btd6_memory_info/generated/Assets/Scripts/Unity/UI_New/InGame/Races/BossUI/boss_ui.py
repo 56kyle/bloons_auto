@@ -1,0 +1,1 @@
+class BossUI:	pass

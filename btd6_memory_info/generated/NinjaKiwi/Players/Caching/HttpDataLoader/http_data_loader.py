@@ -1,0 +1,1 @@
+class HttpDataLoader:	pass

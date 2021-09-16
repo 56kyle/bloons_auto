@@ -1,0 +1,1 @@
+class GSPolicyResponse_t:	pass

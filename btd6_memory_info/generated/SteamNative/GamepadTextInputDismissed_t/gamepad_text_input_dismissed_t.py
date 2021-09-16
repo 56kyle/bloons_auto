@@ -1,0 +1,1 @@
+class GamepadTextInputDismissed_t:	pass

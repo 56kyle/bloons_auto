@@ -1,0 +1,1 @@
+class MonkeyStatue:	pass

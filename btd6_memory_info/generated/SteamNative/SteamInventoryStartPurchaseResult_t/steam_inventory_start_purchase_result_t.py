@@ -1,0 +1,1 @@
+class SteamInventoryStartPurchaseResult_t:	pass

@@ -1,0 +1,1 @@
+class LiNK:	pass

@@ -1,0 +1,1 @@
+class PowerAssetChanges:	pass

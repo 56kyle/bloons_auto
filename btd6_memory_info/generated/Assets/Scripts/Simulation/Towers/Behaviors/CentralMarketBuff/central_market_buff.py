@@ -1,0 +1,1 @@
+class CentralMarketBuff:	pass

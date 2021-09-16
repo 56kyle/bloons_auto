@@ -1,0 +1,1 @@
+class TargetSelectedPoint:	pass

@@ -1,0 +1,1 @@
+class XmlTextReaderImpl:	pass

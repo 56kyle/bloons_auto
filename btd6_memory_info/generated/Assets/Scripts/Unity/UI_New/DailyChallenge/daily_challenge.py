@@ -1,0 +1,1 @@
+class DailyChallenge:	pass

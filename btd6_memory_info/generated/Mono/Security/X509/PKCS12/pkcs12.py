@@ -1,0 +1,1 @@
+class PKCS12:	pass

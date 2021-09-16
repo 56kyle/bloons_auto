@@ -1,0 +1,1 @@
+class DictationRecognizer:	pass

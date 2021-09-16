@@ -1,0 +1,1 @@
+class NodeKeyValueCollection:	pass

@@ -1,0 +1,1 @@
+class Guild_GetInfo:	pass

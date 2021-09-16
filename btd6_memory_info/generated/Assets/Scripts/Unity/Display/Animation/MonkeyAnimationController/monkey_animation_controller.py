@@ -1,0 +1,1 @@
+class MonkeyAnimationController:	pass

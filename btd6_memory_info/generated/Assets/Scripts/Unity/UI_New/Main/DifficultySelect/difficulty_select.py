@@ -1,0 +1,1 @@
+class DifficultySelect:	pass

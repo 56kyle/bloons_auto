@@ -1,0 +1,1 @@
+class UserAchievementIconFetched_t:	pass

@@ -1,0 +1,1 @@
+class PreUpdate:	pass

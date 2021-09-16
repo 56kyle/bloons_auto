@@ -1,0 +1,1 @@
+class OpenGameEventsScreen:	pass

@@ -1,0 +1,1 @@
+class SupportRemoveFilterOutTag:	pass

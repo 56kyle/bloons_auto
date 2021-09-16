@@ -1,0 +1,1 @@
+class UTF32Encoding:	pass

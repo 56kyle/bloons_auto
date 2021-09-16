@@ -1,0 +1,1 @@
+class SteamServerConnectFailure_t:	pass

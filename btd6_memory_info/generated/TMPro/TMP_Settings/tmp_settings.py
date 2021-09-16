@@ -1,0 +1,1 @@
+class TMP_Settings:	pass

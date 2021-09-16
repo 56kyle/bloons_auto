@@ -1,0 +1,1 @@
+class NewLaunchQueryParameters_t:	pass

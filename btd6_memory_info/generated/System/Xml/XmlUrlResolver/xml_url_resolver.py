@@ -1,0 +1,1 @@
+class XmlUrlResolver:	pass

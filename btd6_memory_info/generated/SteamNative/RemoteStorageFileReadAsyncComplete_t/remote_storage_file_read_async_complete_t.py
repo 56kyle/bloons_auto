@@ -1,0 +1,1 @@
+class RemoteStorageFileReadAsyncComplete_t:	pass

@@ -1,0 +1,1 @@
+class MicroTxnAuthorizationResponse_t:	pass

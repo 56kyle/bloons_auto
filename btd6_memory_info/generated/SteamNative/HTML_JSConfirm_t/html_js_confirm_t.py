@@ -1,0 +1,1 @@
+class HTML_JSConfirm_t:	pass

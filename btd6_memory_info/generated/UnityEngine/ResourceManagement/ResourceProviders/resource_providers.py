@@ -1,0 +1,1 @@
+class ResourceProviders:	pass

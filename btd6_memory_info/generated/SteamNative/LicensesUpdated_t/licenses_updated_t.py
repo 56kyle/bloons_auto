@@ -1,0 +1,1 @@
+class LicensesUpdated_t:	pass

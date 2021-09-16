@@ -1,0 +1,1 @@
+class Authenticode:	pass

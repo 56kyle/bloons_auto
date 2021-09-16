@@ -1,0 +1,1 @@
+class SteamShutdown_t:	pass

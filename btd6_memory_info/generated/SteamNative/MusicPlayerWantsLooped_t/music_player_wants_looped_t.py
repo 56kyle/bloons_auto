@@ -1,0 +1,1 @@
+class MusicPlayerWantsLooped_t:	pass

@@ -1,0 +1,1 @@
+class SetPersonaNameResponse_t:	pass

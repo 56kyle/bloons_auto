@@ -1,0 +1,1 @@
+class HttpWebRequest:	pass

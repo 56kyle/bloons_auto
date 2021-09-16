@@ -1,0 +1,1 @@
+class WindowsConsole:	pass

@@ -1,0 +1,1 @@
+class PropagationPaths:	pass

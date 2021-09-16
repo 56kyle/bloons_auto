@@ -1,0 +1,1 @@
+class Btd6PlayerStatPair:	pass

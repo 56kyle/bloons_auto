@@ -1,0 +1,2 @@
+symbols = []
+exports = [{'type': 'function', 'name': 'DiscordCreate', 'address': '0x7ffac4628090'}, {'type': 'function', 'name': 'DiscordVersion', 'address': '0x7ffac46284b0'}, {'type': 'function', 'name': 'rust_eh_personality', 'address': '0x7ffac487d850'}]

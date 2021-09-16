@@ -1,0 +1,1 @@
+class WindModel:	pass

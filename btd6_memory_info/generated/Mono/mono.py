@@ -1,0 +1,1 @@
+class Mono:	pass

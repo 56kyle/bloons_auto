@@ -1,0 +1,1 @@
+class Win32Native:	pass

@@ -1,0 +1,1 @@
+class HTML_LinkAtPosition_t:	pass

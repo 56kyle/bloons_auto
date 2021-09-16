@@ -1,0 +1,1 @@
+class SharedTowerGrid:	pass

@@ -1,0 +1,1 @@
+class MyNK_GetUserInventory:	pass

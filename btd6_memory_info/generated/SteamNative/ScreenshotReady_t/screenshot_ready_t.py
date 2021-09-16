@@ -1,0 +1,1 @@
+class ScreenshotReady_t:	pass

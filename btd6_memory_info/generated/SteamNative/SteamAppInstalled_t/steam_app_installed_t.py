@@ -1,0 +1,1 @@
+class SteamAppInstalled_t:	pass

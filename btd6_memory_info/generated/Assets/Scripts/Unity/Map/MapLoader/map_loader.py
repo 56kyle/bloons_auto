@@ -1,0 +1,1 @@
+class MapLoader:	pass

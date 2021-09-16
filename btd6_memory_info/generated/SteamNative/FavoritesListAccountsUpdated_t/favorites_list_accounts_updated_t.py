@@ -1,0 +1,1 @@
+class FavoritesListAccountsUpdated_t:	pass

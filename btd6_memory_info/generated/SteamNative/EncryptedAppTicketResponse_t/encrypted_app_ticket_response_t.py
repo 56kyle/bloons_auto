@@ -1,0 +1,1 @@
+class EncryptedAppTicketResponse_t:	pass

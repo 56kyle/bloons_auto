@@ -1,0 +1,1 @@
+class Payment_SteamGetIAPs:	pass

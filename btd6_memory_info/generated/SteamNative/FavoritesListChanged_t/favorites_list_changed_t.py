@@ -1,0 +1,1 @@
+class FavoritesListChanged_t:	pass

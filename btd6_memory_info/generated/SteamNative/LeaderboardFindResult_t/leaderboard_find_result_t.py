@@ -1,0 +1,1 @@
+class LeaderboardFindResult_t:	pass

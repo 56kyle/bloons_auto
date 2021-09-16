@@ -1,0 +1,1 @@
+class ClientGameServerDeny_t:	pass

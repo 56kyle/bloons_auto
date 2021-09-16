@@ -1,0 +1,1 @@
+class LayoutGroup:	pass

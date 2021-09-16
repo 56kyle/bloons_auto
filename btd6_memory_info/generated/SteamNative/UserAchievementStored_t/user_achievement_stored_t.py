@@ -1,0 +1,1 @@
+class UserAchievementStored_t:	pass

@@ -1,0 +1,1 @@
+class RemoteStorageAppSyncedServer_t:	pass

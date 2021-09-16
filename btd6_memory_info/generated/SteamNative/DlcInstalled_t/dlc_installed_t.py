@@ -1,0 +1,1 @@
+class DlcInstalled_t:	pass

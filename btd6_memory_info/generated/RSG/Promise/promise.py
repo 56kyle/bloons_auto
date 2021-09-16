@@ -1,0 +1,1 @@
+class Promise:	pass

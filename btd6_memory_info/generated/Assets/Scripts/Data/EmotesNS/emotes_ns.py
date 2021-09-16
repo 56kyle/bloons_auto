@@ -1,0 +1,1 @@
+class EmotesNS:	pass

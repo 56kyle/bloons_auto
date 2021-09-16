@@ -1,0 +1,1 @@
+class HeroSelectTransition:	pass

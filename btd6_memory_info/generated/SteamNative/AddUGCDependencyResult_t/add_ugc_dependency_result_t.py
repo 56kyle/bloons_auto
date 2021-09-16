@@ -1,0 +1,1 @@
+class AddUGCDependencyResult_t:	pass

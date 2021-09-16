@@ -1,0 +1,1 @@
+class HTML_CloseBrowser_t:	pass

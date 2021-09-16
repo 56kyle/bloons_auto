@@ -1,0 +1,1 @@
+class GetAuthSessionTicketResponse_t:	pass

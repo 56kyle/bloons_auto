@@ -1,0 +1,1 @@
+class Mail:	pass

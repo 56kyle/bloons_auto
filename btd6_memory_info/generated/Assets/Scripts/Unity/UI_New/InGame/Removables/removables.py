@@ -1,0 +1,1 @@
+class Removables:	pass

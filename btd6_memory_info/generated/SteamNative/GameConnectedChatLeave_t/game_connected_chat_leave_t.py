@@ -1,0 +1,1 @@
+class GameConnectedChatLeave_t:	pass

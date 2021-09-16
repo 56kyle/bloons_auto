@@ -1,0 +1,1 @@
+class RemoteStorageDeletePublishedFileResult_t:	pass

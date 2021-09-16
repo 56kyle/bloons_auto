@@ -1,0 +1,1 @@
+class FtpDataStream:	pass

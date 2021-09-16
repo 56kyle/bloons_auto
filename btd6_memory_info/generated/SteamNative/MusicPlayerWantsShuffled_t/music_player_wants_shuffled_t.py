@@ -1,0 +1,1 @@
+class MusicPlayerWantsShuffled_t:	pass

@@ -1,0 +1,1 @@
+class GlobalIllumination:	pass

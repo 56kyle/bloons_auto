@@ -1,0 +1,1 @@
+class NamespaceList:	pass

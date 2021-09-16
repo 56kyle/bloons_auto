@@ -3,9 +3,12 @@ from abc import ABC
 import collections
 import frida.core
 import mouse
+import struct
+import time
 import pymem.ressources.structure
 import numpy as np
 
+from .const import hex_to_x, hex_to_y
 from memory import Hook, ScriptInfo, MissingKwargError
 from pymem import Pymem
 from pymem.ressources.structure import MODULEINFO
@@ -13,23 +16,18 @@ from typing import Union
 
 
 Region = collections.namedtuple('Region', 'xi yi xf yf')
-#var getCursorPositionPointer = ptr("{PlaceableHook.get_cursor_offset}");
-#var getCursorPosition = new NativeFunction(getCursorPositionPointer, "void", pointer);
-#var cursorVector2 = getCursorPosition();
 
 
 def load_placeable_script(session: frida.core.Session, game_assembly: pymem.ressources.structure.MODULEINFO):
+    # args[1] = at: Assets.Scripts.Simulation.SMath.Vector2
+    # args[2] = at: Assets.Scripts.Models.Towers.TowerModel
     placeable_hook = PlaceableHook(
         address=str(int(game_assembly.lpBaseOfDll + PlaceableHook.offset)),
         on_enter='''
+            this.vec_2 = args[1];
         ''',
-        on_leave=f'''
-            var cursorXPointer = cursorVector2.add("0x10")
-            var cursorYPointer = cursorVector2.add("0x14")
-            var x = cursorXPointer.readFloat();
-            var y = cursorYPointer.readFloat();
-            var coordinates = [x, y];
-            send(x);
+        on_leave='''
+            send(this.vec_2.toString() + " " + args);
         ''',
         game_assembly=game_assembly,
     )
@@ -49,12 +47,13 @@ class PlaceableHook(Hook, ABC):
     def __init__(self, address: Union[str, int], game_assembly: MODULEINFO, **kwargs):
         super(PlaceableHook, self).__init__(address, **kwargs)
         self.placeable = False
-        self.location = None
-        self.checkable_locations = Region(32, 36, 1600, 1050)
-        self.checked_locations = np.full((1080, 1920), False)
-        self.placeable_locations = np.full((1080, 1920), False)
+        self.location = []
         self.btd6 = Pymem('BloonsTD6.exe')
         self.game_assembly = game_assembly
+        self.x_values = hex_to_x
+        self.y_values = hex_to_y
+        self.np_placeable = np.full((1080, 1920), False)
+        self.np_checked = np.full((1080, 1920), False)
 
     def code(self, address) -> str:
         on_enter_text = self.on_enter_container()
@@ -68,19 +67,15 @@ class PlaceableHook(Hook, ABC):
 
     def on_message(self, message, data):
         payload = message.get('payload')
-        if payload == '0x0':
-            self.placeable = False
-            self.location = mouse.get_position()
-        elif payload == '0x1':
-            self.placeable = True
-            self.location = mouse.get_position()
-        else:
-            self.location = None
-
-
-
-
-
-
+        hex_y = payload[2:10]
+        hex_x = payload[10:18]
+        value = payload.split(' ')[1]
+        x = hex_to_x.get(hex_x)
+        y = hex_to_y.get(hex_y)
+        if x and y:
+            self.location = (x, y)
+            self.placeable = value == '0x1'
+            self.np_placeable[y, x] = self.placeable
+            self.np_checked[y, x] = True
 
 

@@ -1,0 +1,1 @@
+class CoopArea:	pass

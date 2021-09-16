@@ -1,0 +1,1 @@
+class PlayerStatsCache:	pass

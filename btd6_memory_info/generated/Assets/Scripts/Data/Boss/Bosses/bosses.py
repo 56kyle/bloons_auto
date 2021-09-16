@@ -1,0 +1,1 @@
+class Bosses:	pass

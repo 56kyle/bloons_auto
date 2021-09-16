@@ -1,0 +1,1 @@
+class HTML_NeedsPaint_t:	pass

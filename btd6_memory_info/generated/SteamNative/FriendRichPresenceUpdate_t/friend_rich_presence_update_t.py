@@ -1,0 +1,1 @@
+class FriendRichPresenceUpdate_t:	pass

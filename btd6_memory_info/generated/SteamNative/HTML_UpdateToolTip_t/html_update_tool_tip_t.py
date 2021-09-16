@@ -1,0 +1,1 @@
+class HTML_UpdateToolTip_t:	pass

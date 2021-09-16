@@ -1,0 +1,1 @@
+class SteamAppUninstalled_t:	pass

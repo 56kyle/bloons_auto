@@ -1,0 +1,2 @@
+symbols = []
+exports = [{'type': 'function', 'name': 'AmdPowerXpressRequestHighPerformance', 'address': '0x7ff66dd14004'}, {'type': 'function', 'name': 'NvOptimusEnablement', 'address': '0x7ff66dd14000'}]

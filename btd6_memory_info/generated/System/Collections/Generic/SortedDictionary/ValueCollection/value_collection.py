@@ -1,0 +1,1 @@
+class ValueCollection:	pass

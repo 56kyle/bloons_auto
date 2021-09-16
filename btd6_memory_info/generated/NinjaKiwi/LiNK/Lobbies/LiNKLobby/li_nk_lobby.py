@@ -1,0 +1,1 @@
+class LiNKLobby:	pass

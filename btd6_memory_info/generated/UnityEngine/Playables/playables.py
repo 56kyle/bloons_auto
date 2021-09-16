@@ -1,0 +1,1 @@
+class Playables:	pass

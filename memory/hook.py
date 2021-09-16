@@ -34,7 +34,8 @@ class Hook(ScriptInfo, ABC):
     def on_enter_container(self) -> str:
         on_enter_content = self.on_enter_content()
         return f'''onEnter: function(args) {{
-            {self.on_enter}
+        
+            this.vec_2 = args[1];
         }},
         ''' if on_enter_content else ''
 

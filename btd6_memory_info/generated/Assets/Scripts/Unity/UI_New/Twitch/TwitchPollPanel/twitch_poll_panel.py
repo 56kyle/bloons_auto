@@ -1,0 +1,1 @@
+class TwitchPollPanel:	pass

@@ -1,0 +1,1 @@
+class HTML_BrowserRestarted_t:	pass

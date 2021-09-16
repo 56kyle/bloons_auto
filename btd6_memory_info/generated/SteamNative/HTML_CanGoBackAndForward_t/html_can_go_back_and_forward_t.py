@@ -1,0 +1,1 @@
+class HTML_CanGoBackAndForward_t:	pass

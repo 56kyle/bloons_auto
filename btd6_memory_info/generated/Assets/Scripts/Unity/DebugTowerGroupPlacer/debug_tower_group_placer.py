@@ -1,0 +1,1 @@
+class DebugTowerGroupPlacer:	pass

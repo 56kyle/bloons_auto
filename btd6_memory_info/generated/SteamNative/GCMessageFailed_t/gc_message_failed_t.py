@@ -1,0 +1,1 @@
+class GCMessageFailed_t:	pass

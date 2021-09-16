@@ -1,0 +1,1 @@
+class LobbyMatchList_t:	pass

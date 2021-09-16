@@ -1,0 +1,1 @@
+class GameConnectedChatJoin_t:	pass

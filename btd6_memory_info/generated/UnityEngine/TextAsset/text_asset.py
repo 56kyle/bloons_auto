@@ -1,0 +1,1 @@
+class TextAsset:	pass

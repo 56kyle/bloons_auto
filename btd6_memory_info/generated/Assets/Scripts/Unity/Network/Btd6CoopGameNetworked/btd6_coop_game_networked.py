@@ -1,0 +1,1 @@
+class Btd6CoopGameNetworked:	pass

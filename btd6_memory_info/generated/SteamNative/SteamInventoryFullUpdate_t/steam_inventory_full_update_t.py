@@ -1,0 +1,1 @@
+class SteamInventoryFullUpdate_t:	pass

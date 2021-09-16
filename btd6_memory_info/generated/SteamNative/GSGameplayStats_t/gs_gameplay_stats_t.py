@@ -1,0 +1,1 @@
+class GSGameplayStats_t:	pass

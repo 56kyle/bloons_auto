@@ -1,0 +1,1 @@
+class StandaloneInputModule:	pass

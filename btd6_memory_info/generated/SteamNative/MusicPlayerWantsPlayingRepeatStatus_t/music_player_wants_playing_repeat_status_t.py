@@ -1,0 +1,1 @@
+class MusicPlayerWantsPlayingRepeatStatus_t:	pass

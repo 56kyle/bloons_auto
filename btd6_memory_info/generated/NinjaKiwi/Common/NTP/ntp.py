@@ -1,0 +1,1 @@
+class NTP:	pass

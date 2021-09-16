@@ -1,0 +1,1 @@
+class GameRichPresenceJoinRequested_t:	pass

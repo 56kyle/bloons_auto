@@ -1,0 +1,1 @@
+class DeleteItemResult_t:	pass

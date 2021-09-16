@@ -1,0 +1,1 @@
+class GameWebCallback_t:	pass

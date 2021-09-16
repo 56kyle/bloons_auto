@@ -1,0 +1,1 @@
+class RemoteStorageGetPublishedItemVoteDetailsResult_t:	pass

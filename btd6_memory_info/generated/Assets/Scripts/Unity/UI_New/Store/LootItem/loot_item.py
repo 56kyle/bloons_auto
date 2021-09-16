@@ -1,0 +1,1 @@
+class LootItem:	pass

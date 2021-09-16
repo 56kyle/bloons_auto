@@ -1,0 +1,1 @@
+class RemoteStorageSetUserPublishedFileActionResult_t:	pass

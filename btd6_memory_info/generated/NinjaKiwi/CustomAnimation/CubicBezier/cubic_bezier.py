@@ -1,0 +1,1 @@
+class CubicBezier:	pass

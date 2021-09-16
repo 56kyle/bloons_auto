@@ -1,0 +1,1 @@
+class Lightmapping:	pass

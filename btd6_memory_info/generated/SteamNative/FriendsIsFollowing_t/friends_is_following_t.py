@@ -1,0 +1,1 @@
+class FriendsIsFollowing_t:	pass

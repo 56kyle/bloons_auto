@@ -1,0 +1,1 @@
+class CoopJoinMatchScreen:	pass

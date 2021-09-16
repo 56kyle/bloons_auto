@@ -1,0 +1,1 @@
+class XElement:	pass

@@ -1,0 +1,1 @@
+class GooglePlayGames:	pass

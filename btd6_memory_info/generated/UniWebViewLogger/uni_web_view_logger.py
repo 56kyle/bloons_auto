@@ -1,0 +1,1 @@
+class UniWebViewLogger:	pass

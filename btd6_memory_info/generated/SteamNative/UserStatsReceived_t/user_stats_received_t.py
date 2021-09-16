@@ -1,0 +1,1 @@
+class UserStatsReceived_t:	pass

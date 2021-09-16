@@ -1,0 +1,1 @@
+class SteamInventoryEligiblePromoItemDefIDs_t:	pass

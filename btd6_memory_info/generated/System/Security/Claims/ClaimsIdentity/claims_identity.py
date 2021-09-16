@@ -1,0 +1,1 @@
+class ClaimsIdentity:	pass

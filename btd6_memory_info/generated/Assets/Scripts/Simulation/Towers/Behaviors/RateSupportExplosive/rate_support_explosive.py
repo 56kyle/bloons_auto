@@ -1,0 +1,1 @@
+class RateSupportExplosive:	pass

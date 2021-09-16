@@ -1,0 +1,1 @@
+class SteamUGCQueryCompleted_t:	pass

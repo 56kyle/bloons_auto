@@ -1,0 +1,1 @@
+class StoreMenu:	pass

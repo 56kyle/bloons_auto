@@ -1,0 +1,1 @@
+class HTML_OpenLinkInNewTab_t:	pass

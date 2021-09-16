@@ -1,0 +1,1 @@
+class IgnoreDmgImmunity:	pass

@@ -1,0 +1,1 @@
+class YieldAwaitable:	pass

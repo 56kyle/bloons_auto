@@ -1,0 +1,1 @@
+class NKAnalytics_Redshift:	pass

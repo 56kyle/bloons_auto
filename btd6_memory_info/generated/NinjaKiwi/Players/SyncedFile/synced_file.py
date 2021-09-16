@@ -1,0 +1,1 @@
+class SyncedFile:	pass

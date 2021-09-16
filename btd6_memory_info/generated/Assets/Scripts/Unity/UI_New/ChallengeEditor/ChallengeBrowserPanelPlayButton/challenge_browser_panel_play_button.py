@@ -1,0 +1,1 @@
+class ChallengeBrowserPanelPlayButton:	pass

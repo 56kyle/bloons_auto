@@ -1,0 +1,1 @@
+class TimeSpanParse:	pass

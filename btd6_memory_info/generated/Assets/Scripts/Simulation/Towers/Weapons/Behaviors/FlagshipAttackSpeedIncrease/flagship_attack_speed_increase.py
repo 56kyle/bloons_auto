@@ -1,0 +1,1 @@
+class FlagshipAttackSpeedIncrease:	pass

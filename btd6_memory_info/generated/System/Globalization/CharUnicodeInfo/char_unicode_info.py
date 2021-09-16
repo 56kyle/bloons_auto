@@ -1,0 +1,1 @@
+class CharUnicodeInfo:	pass

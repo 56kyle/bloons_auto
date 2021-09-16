@@ -1,0 +1,1 @@
+class UnhandledExceptionHandler:	pass

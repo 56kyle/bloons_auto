@@ -1,0 +1,1 @@
+class SubmitItemUpdateResult_t:	pass

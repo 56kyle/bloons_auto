@@ -1,0 +1,1 @@
+class RemoteStorageGetPublishedFileDetailsResult_t:	pass

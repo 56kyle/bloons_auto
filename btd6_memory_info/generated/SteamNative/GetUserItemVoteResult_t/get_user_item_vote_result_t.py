@@ -1,0 +1,1 @@
+class GetUserItemVoteResult_t:	pass

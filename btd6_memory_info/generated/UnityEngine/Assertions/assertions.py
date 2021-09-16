@@ -1,0 +1,1 @@
+class Assertions:	pass

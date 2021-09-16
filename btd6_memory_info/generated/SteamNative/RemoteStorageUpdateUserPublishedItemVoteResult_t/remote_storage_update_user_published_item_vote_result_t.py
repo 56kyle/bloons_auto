@@ -1,0 +1,1 @@
+class RemoteStorageUpdateUserPublishedItemVoteResult_t:	pass

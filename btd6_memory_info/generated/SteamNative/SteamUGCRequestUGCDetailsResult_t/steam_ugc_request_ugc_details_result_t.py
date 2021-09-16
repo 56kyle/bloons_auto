@@ -1,0 +1,1 @@
+class SteamUGCRequestUGCDetailsResult_t:	pass

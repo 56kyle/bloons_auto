@@ -1,0 +1,1 @@
+class CodePointIndexer:	pass

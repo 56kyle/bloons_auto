@@ -1,0 +1,1 @@
+class FriendGameInfo_t:	pass

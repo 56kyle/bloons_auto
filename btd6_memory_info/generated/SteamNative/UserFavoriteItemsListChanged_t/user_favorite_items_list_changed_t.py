@@ -1,0 +1,1 @@
+class UserFavoriteItemsListChanged_t:	pass

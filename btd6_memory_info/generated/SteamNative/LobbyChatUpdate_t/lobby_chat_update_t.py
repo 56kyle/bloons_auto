@@ -1,0 +1,1 @@
+class LobbyChatUpdate_t:	pass

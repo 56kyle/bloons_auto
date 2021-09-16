@@ -1,0 +1,1 @@
+class Linux64:	pass

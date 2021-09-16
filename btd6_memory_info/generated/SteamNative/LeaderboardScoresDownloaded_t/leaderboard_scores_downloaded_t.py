@@ -1,0 +1,1 @@
+class LeaderboardScoresDownloaded_t:	pass

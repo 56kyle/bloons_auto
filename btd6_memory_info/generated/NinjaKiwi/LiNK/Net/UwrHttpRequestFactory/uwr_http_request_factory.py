@@ -1,0 +1,1 @@
+class UwrHttpRequestFactory:	pass

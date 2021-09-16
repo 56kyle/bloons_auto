@@ -1,0 +1,1 @@
+class CoroutineTween:	pass

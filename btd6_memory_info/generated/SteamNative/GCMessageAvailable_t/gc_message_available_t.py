@@ -1,0 +1,1 @@
+class GCMessageAvailable_t:	pass

@@ -1,0 +1,1 @@
+class SaveStrategies:	pass

@@ -1,0 +1,1 @@
+class UpdateScreen:	pass

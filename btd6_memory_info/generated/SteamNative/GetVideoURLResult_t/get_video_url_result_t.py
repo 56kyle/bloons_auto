@@ -1,0 +1,1 @@
+class GetVideoURLResult_t:	pass

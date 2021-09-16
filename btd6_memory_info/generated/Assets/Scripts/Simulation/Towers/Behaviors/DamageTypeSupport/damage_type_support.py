@@ -1,0 +1,1 @@
+class DamageTypeSupport:	pass

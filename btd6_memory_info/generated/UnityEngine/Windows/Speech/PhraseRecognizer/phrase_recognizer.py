@@ -1,0 +1,1 @@
+class PhraseRecognizer:	pass

@@ -1,0 +1,1 @@
+class GameConnectedFriendChatMsg_t:	pass

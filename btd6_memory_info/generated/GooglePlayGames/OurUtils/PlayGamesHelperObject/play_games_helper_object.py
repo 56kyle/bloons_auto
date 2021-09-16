@@ -1,0 +1,1 @@
+class PlayGamesHelperObject:	pass

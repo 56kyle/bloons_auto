@@ -1,0 +1,1 @@
+class RemoteStorageDownloadUGCResult_t:	pass

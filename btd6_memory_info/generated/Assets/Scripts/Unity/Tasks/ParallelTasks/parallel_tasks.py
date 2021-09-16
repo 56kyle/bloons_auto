@@ -1,0 +1,1 @@
+class ParallelTasks:	pass

@@ -1,0 +1,1 @@
+class MD5:	pass

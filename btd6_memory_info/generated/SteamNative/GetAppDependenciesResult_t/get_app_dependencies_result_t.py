@@ -1,0 +1,1 @@
+class GetAppDependenciesResult_t:	pass

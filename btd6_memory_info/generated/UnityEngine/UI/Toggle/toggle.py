@@ -1,0 +1,1 @@
+class Toggle:	pass

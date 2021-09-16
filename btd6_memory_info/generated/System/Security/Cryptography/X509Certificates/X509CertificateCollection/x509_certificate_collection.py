@@ -1,0 +1,1 @@
+class X509CertificateCollection:	pass

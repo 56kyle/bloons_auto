@@ -1,0 +1,1 @@
+class RemoveUGCDependencyResult_t:	pass

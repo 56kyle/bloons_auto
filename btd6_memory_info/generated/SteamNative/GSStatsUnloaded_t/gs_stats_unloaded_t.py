@@ -1,0 +1,1 @@
+class GSStatsUnloaded_t:	pass

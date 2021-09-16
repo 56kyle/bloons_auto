@@ -1,0 +1,1 @@
+class DailyRewards:	pass

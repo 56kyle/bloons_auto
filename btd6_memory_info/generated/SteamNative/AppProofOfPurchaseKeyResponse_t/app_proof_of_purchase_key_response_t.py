@@ -1,0 +1,1 @@
+class AppProofOfPurchaseKeyResponse_t:	pass

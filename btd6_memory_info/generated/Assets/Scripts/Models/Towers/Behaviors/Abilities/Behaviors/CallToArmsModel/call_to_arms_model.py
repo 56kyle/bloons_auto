@@ -1,0 +1,1 @@
+class CallToArmsModel:	pass

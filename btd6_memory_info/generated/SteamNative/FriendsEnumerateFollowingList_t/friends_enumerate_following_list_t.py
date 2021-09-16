@@ -1,0 +1,1 @@
+class FriendsEnumerateFollowingList_t:	pass

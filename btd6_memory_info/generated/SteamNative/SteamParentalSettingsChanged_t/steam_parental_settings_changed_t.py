@@ -1,0 +1,1 @@
+class SteamParentalSettingsChanged_t:	pass

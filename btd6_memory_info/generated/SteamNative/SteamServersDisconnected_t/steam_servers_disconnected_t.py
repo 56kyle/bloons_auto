@@ -1,0 +1,1 @@
+class SteamServersDisconnected_t:	pass

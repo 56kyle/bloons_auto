@@ -1,0 +1,1 @@
+class LatencyHistory:	pass

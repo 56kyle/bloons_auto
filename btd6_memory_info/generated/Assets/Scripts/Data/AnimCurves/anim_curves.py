@@ -1,0 +1,1 @@
+class AnimCurves:	pass

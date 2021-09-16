@@ -1,0 +1,1 @@
+class DelayedShutoffModel:	pass

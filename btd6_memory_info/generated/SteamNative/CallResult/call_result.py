@@ -1,0 +1,1 @@
+class CallResult:	pass

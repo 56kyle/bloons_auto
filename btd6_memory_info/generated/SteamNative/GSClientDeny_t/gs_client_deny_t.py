@@ -1,0 +1,1 @@
+class GSClientDeny_t:	pass

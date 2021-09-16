@@ -1,0 +1,1 @@
+class PlayerService:	pass

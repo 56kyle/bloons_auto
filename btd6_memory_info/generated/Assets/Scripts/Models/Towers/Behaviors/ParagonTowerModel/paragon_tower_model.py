@@ -1,0 +1,1 @@
+class ParagonTowerModel:	pass

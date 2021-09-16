@@ -1,0 +1,1 @@
+class HTML_NewWindow_t:	pass

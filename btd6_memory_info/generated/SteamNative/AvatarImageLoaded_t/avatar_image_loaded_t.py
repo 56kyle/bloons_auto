@@ -1,0 +1,1 @@
+class AvatarImageLoaded_t:	pass

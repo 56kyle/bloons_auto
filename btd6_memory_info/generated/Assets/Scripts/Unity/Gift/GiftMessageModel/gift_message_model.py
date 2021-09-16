@@ -1,0 +1,1 @@
+class GiftMessageModel:	pass

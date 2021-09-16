@@ -1,0 +1,1 @@
+class XmlDownloadManager:	pass

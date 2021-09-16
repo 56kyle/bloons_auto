@@ -1,0 +1,1 @@
+class LeaderboardUGCSet_t:	pass

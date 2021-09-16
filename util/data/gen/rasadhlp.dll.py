@@ -1,0 +1,2 @@
+symbols = []
+exports = [{'type': 'function', 'name': 'AcsHlpNbConnection', 'address': '0x7ffb337021c0'}, {'type': 'function', 'name': 'WSAttemptAutodialAddr', 'address': '0x7ffb33702780'}, {'type': 'function', 'name': 'WSAttemptAutodialName', 'address': '0x7ffb33701010'}, {'type': 'function', 'name': 'WSNoteSuccessfulHostentLookup', 'address': '0x7ffb337028a0'}]

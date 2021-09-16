@@ -1,0 +1,1 @@
+class DailyChallengeScreen:	pass

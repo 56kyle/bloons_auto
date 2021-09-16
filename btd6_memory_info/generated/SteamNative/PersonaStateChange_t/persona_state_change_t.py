@@ -1,0 +1,1 @@
+class PersonaStateChange_t:	pass

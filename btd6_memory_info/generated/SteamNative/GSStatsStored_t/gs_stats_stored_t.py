@@ -1,0 +1,1 @@
+class GSStatsStored_t:	pass

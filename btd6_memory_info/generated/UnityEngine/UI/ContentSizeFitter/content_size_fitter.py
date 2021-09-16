@@ -1,0 +1,1 @@
+class ContentSizeFitter:	pass

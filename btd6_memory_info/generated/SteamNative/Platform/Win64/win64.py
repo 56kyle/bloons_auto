@@ -1,0 +1,1 @@
+class Win64:	pass

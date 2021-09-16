@@ -1,0 +1,1 @@
+class CollisionChecker:	pass

@@ -1,0 +1,1 @@
+class NumberOfCurrentPlayers_t:	pass

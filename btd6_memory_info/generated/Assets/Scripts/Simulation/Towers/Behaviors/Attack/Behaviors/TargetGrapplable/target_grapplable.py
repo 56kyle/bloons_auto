@@ -1,0 +1,1 @@
+class TargetGrapplable:	pass

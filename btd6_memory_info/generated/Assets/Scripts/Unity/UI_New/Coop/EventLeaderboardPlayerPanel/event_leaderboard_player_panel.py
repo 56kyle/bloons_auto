@@ -1,0 +1,1 @@
+class EventLeaderboardPlayerPanel:	pass

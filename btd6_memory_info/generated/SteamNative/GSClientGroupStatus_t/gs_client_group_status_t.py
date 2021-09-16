@@ -1,0 +1,1 @@
+class GSClientGroupStatus_t:	pass

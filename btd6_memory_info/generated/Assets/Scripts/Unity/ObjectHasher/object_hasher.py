@@ -1,0 +1,1 @@
+class ObjectHasher:	pass

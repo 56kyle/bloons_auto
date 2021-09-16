@@ -1,0 +1,1 @@
+class LobbyKicked_t:	pass

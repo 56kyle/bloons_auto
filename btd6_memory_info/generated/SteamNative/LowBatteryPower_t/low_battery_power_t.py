@@ -1,0 +1,1 @@
+class LowBatteryPower_t:	pass

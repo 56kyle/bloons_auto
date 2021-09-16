@@ -1,0 +1,1 @@
+class CheckFileSignature_t:	pass

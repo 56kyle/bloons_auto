@@ -1,0 +1,1 @@
+class RemoteStorageUserVoteDetails_t:	pass

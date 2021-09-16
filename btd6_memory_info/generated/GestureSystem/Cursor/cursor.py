@@ -1,0 +1,1 @@
+class Cursor:	pass

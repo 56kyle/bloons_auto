@@ -1,0 +1,1 @@
+class KerningTable:	pass

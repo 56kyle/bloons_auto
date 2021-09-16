@@ -1,0 +1,1 @@
+class LobbyDataUpdate_t:	pass

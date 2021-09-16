@@ -1,0 +1,1 @@
+class ReadContentAsBinaryHelper:	pass

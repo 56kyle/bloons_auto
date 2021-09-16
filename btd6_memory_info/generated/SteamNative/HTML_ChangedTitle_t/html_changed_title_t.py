@@ -1,0 +1,1 @@
+class HTML_ChangedTitle_t:	pass

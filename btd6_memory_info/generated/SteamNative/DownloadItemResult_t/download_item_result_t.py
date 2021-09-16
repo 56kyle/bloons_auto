@@ -1,0 +1,1 @@
+class DownloadItemResult_t:	pass

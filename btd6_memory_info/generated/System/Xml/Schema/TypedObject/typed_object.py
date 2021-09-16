@@ -1,0 +1,1 @@
+class TypedObject:	pass

@@ -1,0 +1,1 @@
+class SynchronousAsyncResult:	pass

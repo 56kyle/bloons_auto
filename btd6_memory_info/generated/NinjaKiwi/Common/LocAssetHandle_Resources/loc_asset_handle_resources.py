@@ -1,0 +1,1 @@
+class LocAssetHandle_Resources:	pass

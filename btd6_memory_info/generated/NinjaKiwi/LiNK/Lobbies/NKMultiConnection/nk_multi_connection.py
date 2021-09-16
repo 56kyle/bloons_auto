@@ -1,0 +1,1 @@
+class NKMultiConnection:	pass

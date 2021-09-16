@@ -1,0 +1,1 @@
+class LocAssetHandle_Addressable:	pass

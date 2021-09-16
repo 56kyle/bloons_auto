@@ -1,0 +1,1 @@
+class Linux32:	pass

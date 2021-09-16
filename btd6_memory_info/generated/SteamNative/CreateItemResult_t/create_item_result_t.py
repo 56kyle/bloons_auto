@@ -1,0 +1,1 @@
+class CreateItemResult_t:	pass

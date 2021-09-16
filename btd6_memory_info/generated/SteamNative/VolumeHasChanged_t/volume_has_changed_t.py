@@ -1,0 +1,1 @@
+class VolumeHasChanged_t:	pass

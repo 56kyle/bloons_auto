@@ -1,0 +1,1 @@
+class RegisterActivationCodeResponse_t:	pass

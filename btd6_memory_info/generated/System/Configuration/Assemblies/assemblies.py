@@ -1,0 +1,1 @@
+class Assemblies:	pass

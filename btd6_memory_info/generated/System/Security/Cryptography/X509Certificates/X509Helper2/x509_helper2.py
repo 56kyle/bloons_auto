@@ -1,0 +1,1 @@
+class X509Helper2:	pass

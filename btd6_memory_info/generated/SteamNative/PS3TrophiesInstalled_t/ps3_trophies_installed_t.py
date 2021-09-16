@@ -1,0 +1,1 @@
+class PS3TrophiesInstalled_t:	pass

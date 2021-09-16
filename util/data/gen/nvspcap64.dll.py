@@ -1,0 +1,2 @@
+symbols = []
+exports = [{'type': 'function', 'name': 'CreateShadowPlayProxyShimInterface', 'address': '0x7ffb198f288d'}, {'type': 'function', 'name': 'QueryShadowPlayDdiShimInterface', 'address': '0x7ffb198f9683'}, {'type': 'function', 'name': 'QueryShadowPlayDdiShimStatus', 'address': '0x7ffb198fa0ec'}]

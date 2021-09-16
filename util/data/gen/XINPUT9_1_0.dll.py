@@ -1,0 +1,2 @@
+symbols = []
+exports = [{'type': 'function', 'name': 'DllMain', 'address': '0x7ffb23601010'}, {'type': 'function', 'name': 'XInputGetCapabilities', 'address': '0x7ffb236011e0'}, {'type': 'function', 'name': 'XInputGetDSoundAudioDeviceGuids', 'address': '0x7ffb23601250'}, {'type': 'function', 'name': 'XInputGetState', 'address': '0x7ffb23601160'}, {'type': 'function', 'name': 'XInputSetState', 'address': '0x7ffb236011a0'}]

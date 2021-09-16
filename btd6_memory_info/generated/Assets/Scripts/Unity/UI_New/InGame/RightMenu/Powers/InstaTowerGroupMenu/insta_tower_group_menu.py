@@ -1,0 +1,1 @@
+class InstaTowerGroupMenu:	pass

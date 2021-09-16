@@ -1,0 +1,1 @@
+class RemoteStorageAppSyncProgress_t:	pass

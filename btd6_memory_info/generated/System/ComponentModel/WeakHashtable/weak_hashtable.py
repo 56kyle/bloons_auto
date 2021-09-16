@@ -1,0 +1,1 @@
+class WeakHashtable:	pass

@@ -1,0 +1,1 @@
+class SteamInventoryDefinitionUpdate_t:	pass

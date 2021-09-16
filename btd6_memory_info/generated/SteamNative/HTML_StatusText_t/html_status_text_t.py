@@ -1,0 +1,1 @@
+class HTML_StatusText_t:	pass

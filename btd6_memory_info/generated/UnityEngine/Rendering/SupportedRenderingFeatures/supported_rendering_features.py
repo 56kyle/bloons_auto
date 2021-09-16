@@ -1,0 +1,1 @@
+class SupportedRenderingFeatures:	pass

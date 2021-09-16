@@ -1,0 +1,1 @@
+class GSClientApprove_t:	pass

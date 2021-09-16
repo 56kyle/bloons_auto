@@ -1,0 +1,1 @@
+class GSStatsReceived_t:	pass

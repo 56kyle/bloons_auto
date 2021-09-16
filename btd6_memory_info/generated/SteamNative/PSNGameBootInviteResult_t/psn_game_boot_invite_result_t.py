@@ -1,0 +1,1 @@
+class PSNGameBootInviteResult_t:	pass

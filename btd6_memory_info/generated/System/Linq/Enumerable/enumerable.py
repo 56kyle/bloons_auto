@@ -1,0 +1,1 @@
+class Enumerable:	pass

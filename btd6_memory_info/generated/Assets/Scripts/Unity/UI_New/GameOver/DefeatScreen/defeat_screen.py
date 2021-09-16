@@ -1,0 +1,1 @@
+class DefeatScreen:	pass

@@ -1,0 +1,1 @@
+class UserStatsUnloaded_t:	pass

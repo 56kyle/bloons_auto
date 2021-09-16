@@ -1,0 +1,1 @@
+class RemoteStoragePublishedFileUpdated_t:	pass

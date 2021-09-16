@@ -1,0 +1,1 @@
+class Utils_ESFullSearch:	pass

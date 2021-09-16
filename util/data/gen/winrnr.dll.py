@@ -1,0 +1,2 @@
+symbols = []
+exports = [{'type': 'function', 'name': 'InstallNTDSProvider', 'address': '0x7ffb19f04b90'}, {'type': 'function', 'name': 'NSPStartup', 'address': '0x7ffb19f05200'}, {'type': 'function', 'name': 'RemoveNTDSProvider', 'address': '0x7ffb19f06860'}]

@@ -1,0 +1,1 @@
+class RemoteStorageEnumerateUserSharedWorkshopFilesResult_t:	pass

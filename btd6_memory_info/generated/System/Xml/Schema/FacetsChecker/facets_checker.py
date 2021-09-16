@@ -1,0 +1,1 @@
+class FacetsChecker:	pass

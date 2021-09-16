@@ -1,0 +1,1 @@
+class RemoteStorageSubscribePublishedFileResult_t:	pass

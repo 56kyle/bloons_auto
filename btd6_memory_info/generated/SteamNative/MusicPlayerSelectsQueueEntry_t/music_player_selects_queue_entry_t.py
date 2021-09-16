@@ -1,0 +1,1 @@
+class MusicPlayerSelectsQueueEntry_t:	pass

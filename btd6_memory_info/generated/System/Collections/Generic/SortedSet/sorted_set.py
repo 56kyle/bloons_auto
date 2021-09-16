@@ -1,0 +1,1 @@
+class SortedSet:	pass

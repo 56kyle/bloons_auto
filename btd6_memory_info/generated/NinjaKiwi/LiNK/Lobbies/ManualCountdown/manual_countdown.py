@@ -1,0 +1,1 @@
+class ManualCountdown:	pass

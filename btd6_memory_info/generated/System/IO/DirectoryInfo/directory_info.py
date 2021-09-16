@@ -1,0 +1,1 @@
+class DirectoryInfo:	pass

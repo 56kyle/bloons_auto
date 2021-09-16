@@ -1,0 +1,1 @@
+class RemoteStoragePublishFileProgress_t:	pass

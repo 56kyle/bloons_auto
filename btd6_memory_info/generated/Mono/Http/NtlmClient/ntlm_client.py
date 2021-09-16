@@ -1,0 +1,1 @@
+class NtlmClient:	pass

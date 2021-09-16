@@ -1,0 +1,1 @@
+class GlobalStatsReceived_t:	pass

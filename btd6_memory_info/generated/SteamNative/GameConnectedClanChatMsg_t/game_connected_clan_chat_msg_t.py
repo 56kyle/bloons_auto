@@ -1,0 +1,1 @@
+class GameConnectedClanChatMsg_t:	pass

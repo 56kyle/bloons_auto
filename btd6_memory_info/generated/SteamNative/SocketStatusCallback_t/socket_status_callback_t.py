@@ -1,0 +1,1 @@
+class SocketStatusCallback_t:	pass

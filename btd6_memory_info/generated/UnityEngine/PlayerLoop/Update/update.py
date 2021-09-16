@@ -1,0 +1,1 @@
+class Update:	pass

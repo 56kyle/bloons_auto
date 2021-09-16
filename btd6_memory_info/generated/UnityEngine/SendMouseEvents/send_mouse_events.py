@@ -1,0 +1,1 @@
+class SendMouseEvents:	pass

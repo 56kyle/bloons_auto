@@ -1,0 +1,1 @@
+class ProjectileRadiusSupport:	pass

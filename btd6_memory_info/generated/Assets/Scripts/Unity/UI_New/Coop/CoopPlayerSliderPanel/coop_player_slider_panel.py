@@ -1,0 +1,1 @@
+class CoopPlayerSliderPanel:	pass

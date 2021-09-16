@@ -1,0 +1,1 @@
+class TexturePacker_JsonArray:	pass

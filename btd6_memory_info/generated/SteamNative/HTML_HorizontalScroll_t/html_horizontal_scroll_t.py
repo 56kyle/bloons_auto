@@ -1,0 +1,1 @@
+class HTML_HorizontalScroll_t:	pass

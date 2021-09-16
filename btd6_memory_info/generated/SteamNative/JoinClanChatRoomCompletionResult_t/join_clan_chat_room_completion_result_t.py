@@ -1,0 +1,1 @@
+class JoinClanChatRoomCompletionResult_t:	pass

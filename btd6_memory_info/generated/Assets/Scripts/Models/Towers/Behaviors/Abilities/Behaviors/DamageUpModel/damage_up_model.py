@@ -1,0 +1,1 @@
+class DamageUpModel:	pass

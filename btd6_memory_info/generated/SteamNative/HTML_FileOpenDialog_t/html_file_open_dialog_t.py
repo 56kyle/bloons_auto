@@ -1,0 +1,1 @@
+class HTML_FileOpenDialog_t:	pass

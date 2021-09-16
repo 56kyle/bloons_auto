@@ -1,0 +1,1 @@
+class StoreItems:	pass

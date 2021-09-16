@@ -1,0 +1,1 @@
+class ProfileAvatars:	pass

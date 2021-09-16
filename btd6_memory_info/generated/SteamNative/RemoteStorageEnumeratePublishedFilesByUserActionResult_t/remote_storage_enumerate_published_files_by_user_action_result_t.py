@@ -1,0 +1,1 @@
+class RemoteStorageEnumeratePublishedFilesByUserActionResult_t:	pass

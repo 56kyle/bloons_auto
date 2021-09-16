@@ -1,0 +1,1 @@
+class StopPlaytimeTrackingResult_t:	pass

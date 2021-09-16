@@ -1,0 +1,1 @@
+class HTML_FinishedRequest_t:	pass

@@ -1,0 +1,1 @@
+class TMP_Compatibility:	pass

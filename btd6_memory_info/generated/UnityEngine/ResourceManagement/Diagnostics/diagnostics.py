@@ -1,0 +1,1 @@
+class Diagnostics:	pass

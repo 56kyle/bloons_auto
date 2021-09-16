@@ -1,0 +1,1 @@
+class Polls:	pass
