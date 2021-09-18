@@ -18,7 +18,7 @@ static_field_re = re.compile(r"\t*([\w\-<>]+) : ([^\s]+) \(type: ([\w.,<>{}-]+)\
 field_re = re.compile(r"\t*([\w\-<>]+) : ([^\s]+) \(type: ([\w.,<>{}-]+)\)\n")
 
 # Returns address, function name, function parameters, return type
-method_re = re.compile(r"\t*([\w\-<>]+) : (\w+) \(([^)]*)\):([\w.,<>{}-]+)\n")
+method_re = re.compile(r"\t*([\w<>-]+) : ([\w.,]+) \(([^)]*)\):([\w.,<>{}-]+)\n")
 
 
 def convert_all():
@@ -37,8 +37,8 @@ def convert_all():
                     else:
                         # Class
                         class_data = get_class_data(current_module_base, lines, i-1)
-
-                        data['process']['modules'][current_module_name]['classes'][class_data['name']] = class_data
+                        if not class_data['name'].startswith('<'):
+                            data['process']['modules'][current_module_name]['classes'][class_data['name']] = class_data
                 else:
                     # Module
                     match = re.fullmatch(class_re, line)
@@ -47,13 +47,11 @@ def convert_all():
                         current_module_name = name
                         current_module_base = int(address, 16)
                         data['process']['modules'][current_module_name] = {'offset': base_address - int(address, 16), 'classes': {}}
-                        print(name)
                     else:
                         print("ONO")
                         print(line)
             else:
                 # Base
-                print(line)
                 base_address = int(line.replace('\n', ''), 16)
                 data['process'] = {'name': 'BloonsTD6.exe', 'base_address': base_address, 'modules': {}}
     with open('../btd6_memory_info/cheat_engine_data.py', 'w') as new_file:
@@ -67,7 +65,8 @@ def get_class_data(module_base: int, lines: [str], base_class_tag_index: int) ->
     static_field_tag_index = None
     field_tag_index = None
     method_tag_index = None
-    current_line: int = base_class_tag_index + 1
+    base_class_tag_index_found = None
+    current_line: int = base_class_tag_index
     data = {
         'name': None,
         'offset': None,
@@ -77,21 +76,15 @@ def get_class_data(module_base: int, lines: [str], base_class_tag_index: int) ->
         'base_class': None,
     }
 
-    def has_base_class(i) -> bool:
-        # I is the line that contains "base class" or is before a class address line
-        current_line_tabs = 0
-        for _ in re.finditer(tab_re, lines[i]):
-            current_line_tabs += 1
-        next_line_tabs = 0
-        for _ in re.finditer(tab_re, lines[i + 1]):
-            next_line_tabs += 1
-        return next_line_tabs > current_line_tabs
-
     def get_class_metadata(i: int) -> Union[dict, None]:
         # same as has_base_class
-        match = re.fullmatch(class_re, lines[i])
+        if len(lines) == i + 1:
+            return None
+        match = re.fullmatch(class_re, lines[i+1])
         if match:
             address, name = match.groups()
+            if '<' in name:
+                print(name)
             return {'offset_from_module': int(address, 16) - module_base, 'name': name}
         return None
 
@@ -114,12 +107,23 @@ def get_class_data(module_base: int, lines: [str], base_class_tag_index: int) ->
     def get_method_data(i: int) -> Union[dict, None]:
         # lines[i] should end with 'methods'
         match = re.fullmatch(method_re, lines[i+1])
+        def get_params(p):
+            new_params = {}
+            if p:
+                for pair in p.split('; '):
+                    try:
+                        arg, value = pair.split(': ')
+                        new_params[arg] = value
+                    except ValueError as e:
+                        pass
+                return new_params
+
         if match:
             address, name, params, return_type = match.groups()
-            return {'offset_from_module': int(address, 16) - module_base, 'name': name, 'params': params, 'return_type': return_type}
+            return {'offset_from_module': int(address, 16) - module_base, 'name': name, 'params': get_params(params), 'return_type': return_type}
         return None
 
-    while not (static_field_tag_index and field_tag_index and method_tag_index and base_class_tag_index):
+    while not (static_field_tag_index and field_tag_index and method_tag_index and base_class_tag_index_found):
         if not data['name'] or not data['offset']:
             metadata = get_class_metadata(current_line)
             data['offset'] = metadata['offset_from_module']
@@ -129,27 +133,27 @@ def get_class_data(module_base: int, lines: [str], base_class_tag_index: int) ->
             if new_field:
                 data['static_fields'] = data['static_fields'] if data['static_fields'] else {}
                 data['static_fields'][new_field['name']] = new_field
+                #print(new_field)
             static_field_tag_index = current_line
         if lines[current_line].endswith('fields\n') or (field_tag_index and not method_tag_index):
             new_field = get_field_data(current_line)
             if new_field:
                 data['fields'] = data['fields'] if data['fields'] else {}
                 data['fields'][new_field['name']] = new_field
+                #print(new_field)
             field_tag_index = current_line
         if lines[current_line].endswith('methods\n') or (method_tag_index and not base_class_tag_index):
             new_method = get_method_data(current_line)
             if new_method:
                 data['methods'] = data['methods'] if data['methods'] else {}
                 data['methods'][new_method['name']] = new_method
+                #print(new_method)
             method_tag_index = current_line
-        if lines[current_line].endswith('base class\n'):
-            if has_base_class(current_line):
-                data['base_class'] = get_class_data(module_base, lines, current_line)
-            base_class_tag_index = current_line
+        if 'base class' in lines[current_line] and current_line != base_class_tag_index:
+            data['base_class'] = get_class_metadata(current_line)
+            base_class_tag_index_found = current_line
         current_line += 1
-    else:
-        print(data)
-        return data
+    return data
 
 
 def handle_class(line):
