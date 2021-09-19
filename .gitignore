@@ -1,2 +1,4 @@
 /venv/
+/util/gen/
+/util/gen_test/
 /.idea/
