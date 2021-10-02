@@ -115,6 +115,10 @@ def make_folder_api(module_name, classes_data):
 def try_to_make(path):
     try:
         os.makedirs(path.replace('<', '').replace('>', '').replace(',', '_').replace('|', ''))
+        path = path.replace('<', '').replace('>', '').replace(',', '_').replace('|', '')
+        print(path)
+        for section in path.split('/'):
+            pass
     except:
         pass
 

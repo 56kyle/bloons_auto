@@ -10,13 +10,17 @@ class Hook(ScriptInfo, ABC):
     on_enter: Union[Callable, str, None]
     on_leave: Union[Callable, str, None]
 
-    def __init__(self, address: Union[str, None] = None, on_enter: Union[Callable, str, None] = None, on_leave: Union[Callable, str, None] = None, **kwargs):
+    def __init__(self,
+                 address: Union[str, None] = None,
+                 on_enter: Union[Callable, str, None] = None,
+                 on_leave: Union[Callable, str, None] = None,
+                 **kwargs):
         super().__init__(address=address, **kwargs)
         self.address = address
         self.on_enter = on_enter
         self.on_leave = on_leave
 
-    def __str__(self):
+    def __str__(self) -> str:
         if not self.address:
             raise MissingKwargError('Missing kwarg \'address\'')
         return self.code(self.address)
@@ -34,8 +38,7 @@ class Hook(ScriptInfo, ABC):
     def on_enter_container(self) -> str:
         on_enter_content = self.on_enter_content()
         return f'''onEnter: function(args) {{
-        
-            this.vec_2 = args[1];
+            {on_enter_content}
         }},
         ''' if on_enter_content else ''
 

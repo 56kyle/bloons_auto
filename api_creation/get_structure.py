@@ -4,19 +4,6 @@ import re
 from typing import Generic, Union, Callable
 
 
-# Returns address, class path
-class_re = re.compile(r"\t*([\w.\-<>]+) : ([\w.<>,=|{}-]+)\n?")
-
-# Returns offset from class base address, name, type
-static_field_re = re.compile(r"\t*([\w\-<>]+) : ([^\s]+) \(type: ([\w.,<>{}-]+)\)\n?")
-
-# Returns offset from class base address, name, type
-field_re = re.compile(r"\t*([\w\-<>]+) : ([^\s]+) \(type: ([\w.,<>{}-]+)\)\n?")
-
-# Returns address, function name, function parameters, return type
-method_re = re.compile(r"\t*([\w<>-]+) : ([\w.,]+) \(([^)]*)\):([\w.,<>{}-]+)\n?")
-
-
 def strip_formatting(lines: [str]) -> [str]:
     return [line.replace('\t', '').replace('\n', '') for line in lines]
 
@@ -111,50 +98,6 @@ def get_method_line_range(class_lines: [str]) -> [str]:
 
 def get_base_class_line_range(class_lines: [str]) -> [str]:
     return get_class_info_line_range(class_lines=class_lines, info_name='base class')
-
-
-def get_static_fields(lines):
-    static_fields = {}
-    for line in lines:
-        static_field_offset, static_field_name, static_field_type = re.fullmatch(static_field_re, line).groups()
-        static_fields[static_field_name] = {
-            'offset': static_field_offset,
-            'name': static_field_name,
-            'type': static_field_type,
-        }
-    return static_fields
-
-
-def get_fields(lines):
-    fields = {}
-    for line in lines:
-        field_offset, field_name, field_type = re.fullmatch(field_re, line).groups()
-        fields[field_name] = {
-            'offset': field_offset,
-            'name': field_name,
-            'type': field_type,
-        }
-    return fields
-
-
-def get_methods(lines):
-    methods = {}
-    for line in lines:
-        method_offset, method_name, method_parameters, method_return_type = re.fullmatch(method_re, line).groups()
-        methods[method_name] = {
-            'offset': method_offset,
-            'name': method_name,
-            'params': method_parameters,
-            'return_type': method_return_type,
-        }
-
-
-def get_class_ref(line):
-    class_offset, class_name = re.fullmatch(class_re, line).groups()
-    return {
-        'offset': class_offset,
-        'name': class_name,
-    }
 
 
 def get_ranges_as_dict() -> dict[str, any]:

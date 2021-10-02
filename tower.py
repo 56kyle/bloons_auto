@@ -1,4 +1,4 @@
-from typing import Union, Iterable
+from typing import Union, Iterable, Optional
 
 import mouse
 import keyboard
@@ -10,6 +10,10 @@ import win32con
 import win32gui
 import win32ui
 
+
+from dynamic_info.session import Btd6Session
+from dynamic_info.money import MoneyHook
+from dynamic_info.placeable import PlaceableHook
 
 from window_input import Window, Key
 from PIL import Image
@@ -87,6 +91,7 @@ class Tower:
     keybind = None
     aquatic = False
     size = None
+    session = Btd6Session([MoneyHook, PlaceableHook])
 
     target_type_button = (222, 374)
     tower_deselect_button = (398, 77)
@@ -119,9 +124,26 @@ class Tower:
         else:
             del self
 
+    @classmethod
+    def placeable(cls, x: Union[Iterable, int], y: Optional[int] = None) -> bool:
+        if isinstance(x, Iterable) and not y:
+            x = list(*x)
+            (x, y) = (x[0], x[1])
+        keyboard.press_and_release(cls.keybind, .03)
+        ti = time.time()
+        while cls.session.location != (x, y) and time.time() - ti < .5:
+            mouse.move(x, y)
+        keyboard.press_and_release('escape', .03)
+        return cls.session.placeable and cls.session.location == (x, y)
+
+    def can_place(self, *args, **kwargs):
+        return self.placeable(args[0])
+
     def teardown(self):
         self.select()
         keyboard.press_and_release(keybinds['sell'], .1)
+        self.session.hooks['PlaceableHook'].script.unload()
+        self.session.hooks['MoneyHook'].script.unload()
 
     @classmethod
     def find_placeable_areas(cls, map):
@@ -158,11 +180,6 @@ class Tower:
             return False
         else:
             return True
-
-    @classmethod
-    def can_place(cls, *args, **kwargs):
-        return cls.can_place_quick(*args, **kwargs)
-        #return cls._can_place(*args, **kwargs)
 
     @staticmethod
     def coerce_to_point(location: Union[Point, Iterable]):
