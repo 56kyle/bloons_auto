@@ -154,6 +154,11 @@ def past_5_tabs(tabs):
     return tabs > 4
 
 
+is_gen = re.compile(r"<(.*)>")
+def with_brackets():
+    return re.subn(is_gen, lambda match : f'[{match.groups()[0]}]')
+
+
 def get_data(lines):
     game = {}
     main_offset = 0
@@ -201,7 +206,10 @@ def get_data(lines):
             #  Field data
             if section_name == 'static fields':
                 static_field_name = stripped.split(' : ')[-1].split(' (')[0]
-                static_field_type = stripped.split(' (type: ')[-1].replace(')', '')
+                if '?' in stripped:
+                    static_field_type = 'Callable'
+                else:
+                    static_field_type = stripped.split(' (type: ')[-1].replace(')', '')
                 game['dlls'][dll_name]['classes'][class_name][section_name][static_field_name] = {
                     'address': address,
                     'type': static_field_type,
@@ -283,10 +291,11 @@ def try_make_init(path: str, dll_data: Dict[str, Any]) -> None:
 def make_class_init(path, class_name, class_data):
     lines = []
     with open(os.path.join(path, '__init__.py'), 'w') as file:
-        parent = ''
+        parent = '(FridaHook)'
+        lines.append(f'from hook import FridaHook\n')
         if class_data['base_class']:
             parent_name = [*class_data['base_class'].keys()][0]
-            parent = f'({parent_name})'
+            parent = f'({parent_name}, FridaHook)'
             import_parent = f'import {parent_name}'
             lines.append(f'{import_parent}\n')
             lines.append('\n')
@@ -312,8 +321,8 @@ def make_class_init(path, class_name, class_data):
         lines.append('\n')
         for method_name, method_data in class_data['methods'].items():
             if '?' not in method_name:
-                lines.append(f'\tdef {method_name.replace(".", "")}(self) -> dict:\n')
-                lines.append(f'\t\treturn {method_data}\n')
+                lines.append(f'\tdef {method_name.replace(".", "")}(self, callback) -> dict:\n')
+                lines.append(f'\t\treturn self._call({method_data})\n')
                 lines.append('\n')
         file.writelines(lines)
 
