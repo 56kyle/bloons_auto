@@ -2,18 +2,18 @@
 from abc import ABC
 from .exceptions import MissingKwargError
 from .script_info import ScriptInfo
-from typing import Union, Callable, SupportsInt
+from typing import Callable, SupportsInt, TypeAlias
 
 
 class Hook(ScriptInfo, ABC):
     offset = 0x0
-    on_enter: Union[Callable, str, None]
-    on_leave: Union[Callable, str, None]
+    on_enter: Callable | str | None
+    on_leave: Callable | str | None
 
     def __init__(self,
-                 address: Union[str, None] = None,
-                 on_enter: Union[Callable, str, None] = None,
-                 on_leave: Union[Callable, str, None] = None,
+                 address: str | None = None,
+                 on_enter: Callable | str | None = None,
+                 on_leave: Callable | str | None = None,
                  **kwargs):
         super().__init__(address=address, **kwargs)
         self.address = address

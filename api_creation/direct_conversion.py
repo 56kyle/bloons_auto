@@ -1,5 +1,6 @@
 import os
 import re
+import inflection
 from typing import Callable, List, Union, Optional, Dict, Any
 
 
@@ -156,7 +157,12 @@ def past_5_tabs(tabs):
 
 is_gen = re.compile(r"<(.*)>")
 def with_brackets():
-    return re.subn(is_gen, lambda match : f'[{match.groups()[0]}]')
+    return re.subn(is_gen, lambda match: f'[{match.groups()[0]}]')
+
+
+imps = re.compile(r"([\w.]+)")
+def get_imports(type_ref: str) -> list[str]:
+    return re.findall(imps, type_ref)
 
 
 def get_data(lines):
@@ -193,6 +199,7 @@ def get_data(lines):
             class_name = stripped.split(' : ')[-1]
             game['dlls'][dll_name]['classes'][class_name] = {
                 'address': address,
+                'imports': set(),
                 'fields': {},
                 'static_fields': {},
                 'methods': {},
@@ -210,6 +217,9 @@ def get_data(lines):
                     static_field_type = 'Callable'
                 else:
                     static_field_type = stripped.split(' (type: ')[-1].replace(')', '')
+                    for imp in get_imports(static_field_type):
+                        game['dlls'][dll_name]['classes'][class_name]['imports'].add(imp)
+
                 game['dlls'][dll_name]['classes'][class_name][section_name][static_field_name] = {
                     'address': address,
                     'type': static_field_type,
@@ -218,6 +228,9 @@ def get_data(lines):
             elif section_name == 'fields':
                 field_name = stripped.split(' : ')[-1].split(' (')[0]
                 field_type = stripped.split(' (type: ')[-1].replace(')', '')
+                for imp in get_imports(field_type):
+                    game['dlls'][dll_name]['classes'][class_name]['imports'].add(imp)
+
                 game['dlls'][dll_name]['classes'][class_name][section_name][field_name] = {
                     'address': address,
                     'type': field_type,
@@ -235,8 +248,12 @@ def get_data(lines):
                     method_parameters = []
                 method_parameters_data = {}
                 for method_param in method_parameters:
+
                     try:
                         method_param_name, method_param_type = method_param.split(': ')
+                        for imp in get_imports(method_param_type):
+                            game['dlls'][dll_name]['classes'][class_name]['imports'].add(imp)
+
                         method_parameters_data[method_param_name] = {
                             'type': method_param_type,
                         }
@@ -244,6 +261,9 @@ def get_data(lines):
                         pass
 
                 method_return_type = stripped.split(' -> ')[-1]
+                for imp in get_imports(method_return_type):
+                    game['dlls'][dll_name]['classes'][class_name]['imports'].add(imp)
+
                 game['dlls'][dll_name]['classes'][class_name][section_name][method_name] = {
                     'address': address,
                     'params': method_parameters_data,
@@ -251,6 +271,9 @@ def get_data(lines):
                 }
             elif section_name == 'base_class':
                 base_class_name = stripped.split(' : ')[-1]
+                for imp in get_imports(base_class_name):
+                    game['dlls'][dll_name]['classes'][class_name]['imports'].add(imp)
+
                 game['dlls'][dll_name]['classes'][class_name][section_name][base_class_name] = {
                     'address': address,
                 }
@@ -271,14 +294,27 @@ def try_make_init(path: str, dll_data: Dict[str, Any]) -> None:
     with open(os.path.join(path, '__init__.py'), 'w'):
         pass
     for k, v in dll_data['classes'].items():
-        full_path = k.split('.')
-        class_name = full_path.pop()
+        if '.' in k:
+            full_path = k.split('.')
+            class_name = full_path.pop()
+        else:
+            full_path = [k]
+            class_name = full_path.pop()
+            print(full_path)
+
+        is_important = 'System.Int' in k
+        if is_important:
+            print(f'path - {path}')
         current_dir = path
         for name in full_path:
+            if is_important:
+                print(name)
+                print(current_dir)
             current_dir = os.path.join(current_dir, name)
             try_make_dir(current_dir)
-            with open(os.path.join(current_dir, '__init__.py'), 'w'):
-                pass
+            if not os.path.exists(os.path.join(current_dir, '__init__.py')):
+                with open(os.path.join(current_dir, '__init__.py'), 'w'):
+                    pass
         if '<' in class_name:
             fixed_class_name = class_name.split('<')[0]
         else:
@@ -290,16 +326,18 @@ def try_make_init(path: str, dll_data: Dict[str, Any]) -> None:
 
 def make_class_init(path, class_name, class_data):
     lines = []
-    with open(os.path.join(path, '__init__.py'), 'w') as file:
+
+    with open(os.path.join(path, f'{inflection.underscore(class_name)}.py'), 'w') as file:
         parent = '(FridaHook)'
         lines.append(f'from hook import FridaHook\n')
+        for imp in class_data['imports']:
+            lines.append(f'import {imp}\n')
+
+        lines.append('\n')
+
         if class_data['base_class']:
             parent_name = [*class_data['base_class'].keys()][0]
             parent = f'({parent_name}, FridaHook)'
-            import_parent = f'import {parent_name}'
-            lines.append(f'{import_parent}\n')
-            lines.append('\n')
-            lines.append('\n')
         lines.append(f'class {class_name}{parent}:\n')
         for static_field_name, static_field_data in class_data['static fields'].items():
             lines.append(f'\t{static_field_name}: {static_field_data["type"]} = None\n')
@@ -328,12 +366,14 @@ def make_class_init(path, class_name, class_data):
 
 
 def get_api_v1(game):
-    gen = os.path.join('.', 'gen')
-    version = os.path.join(gen, 'v1')
+    #gen = os.path.join('.', 'gen')
+    gen = os.path.join('..', '..', 'btd6_api')
+    #version = os.path.join(gen, 'src')
+    version = gen
     try_make_dir(version)
 
     for dll_name, dll_data in game['dlls'].items():
-        dll_path = os.path.join(version, *dll_name.split('.'))
+        dll_path = os.path.join(version, *dll_name.split('.')[:-1])
         try_make_dir(dll_path)
         try_make_init(dll_path, dll_data)
 
