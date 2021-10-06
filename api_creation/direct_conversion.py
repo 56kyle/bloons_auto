@@ -321,17 +321,25 @@ def try_make_init(path: str, dll_data: Dict[str, Any]) -> None:
             fixed_class_name = class_name
         current_dir = os.path.join(current_dir, fixed_class_name)
         try_make_dir(current_dir)
-        make_class_init(current_dir, class_name, v)
+        make_class_file(current_dir, class_name, v, fixed_class_name)
 
 
-def make_class_init(path, class_name, class_data):
+def make_class_file(path, class_name, class_data, fixed_class_name):
     lines = []
 
-    with open(os.path.join(path, f'{inflection.underscore(class_name)}.py'), 'w') as file:
+    with open(os.path.join(path, '__init__.py'), 'w') as file:
         parent = '(FridaHook)'
         lines.append(f'from hook import FridaHook\n')
+        from_imps = set()
         for imp in class_data['imports']:
-            lines.append(f'import {imp}\n')
+            to_imp = imp.split('.')[-1]
+            if '.' in imp:
+                from_imp = '.'.join(imp.split('.')[:-1])
+                from_imps.add(f'from {imp} import {to_imp}\n')
+            else:
+                from_imps.add(f'from {imp} import {to_imp}\n')
+        for imp in from_imps:
+            lines.append(imp)
 
         lines.append('\n')
 
