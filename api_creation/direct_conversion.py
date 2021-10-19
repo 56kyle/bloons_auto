@@ -19,7 +19,9 @@ def without_delegates(lines):
         tabs = line.count('\t')
         if deleting and tabs == started_deleting_tabs:
             deleting = False
-        if ('__' in line or '<>' in line or line.split(' : ')[-1].startswith('<')) and not deleting:
+        if started_deleting_tabs == 4 and tabs < 4:
+            deleting = False
+        if (('__' in line and line.count('\t') == 2) or '<>' in line or line.split(' : ')[-1].startswith('<')) and not deleting:
             deleting = True
             started_deleting_tabs = tabs
 
@@ -43,7 +45,7 @@ def file_lines():
 
 def make_pruned():
     with open('./gen/data/cheat_engine_direct_no_delegates.txt', 'w') as file:
-        file.writelines(without_delegates())
+        file.writelines(without_delegates(file_lines()))
 
 
 def make_delegate_pruned():
@@ -156,8 +158,8 @@ def past_5_tabs(tabs):
 
 
 is_gen = re.compile(r"<(.*)>")
-def with_brackets():
-    return re.subn(is_gen, lambda match: f'[{match.groups()[0]}]')
+def with_brackets(line):
+    return re.subn(is_gen, lambda match: f'[{match.groups()[0]}]', line)[0]
 
 
 imps = re.compile(r"([\w.]+)")
@@ -205,11 +207,15 @@ def get_data(lines):
                 'methods': {},
                 'base_class': {},
             }
+            if 'MidpointRounding' in class_name:
+                print(line)
         elif tabs == 3:
             #  Field labels
             section_name = stripped
             game['dlls'][dll_name]['classes'][class_name][section_name] = {}
         elif tabs == 4:
+            if 'MidpointRounding' in class_name:
+                print(line)
             #  Field data
             if section_name == 'static fields':
                 static_field_name = stripped.split(' : ')[-1].split(' (')[0]
@@ -227,7 +233,10 @@ def get_data(lines):
 
             elif section_name == 'fields':
                 field_name = stripped.split(' : ')[-1].split(' (')[0]
-                field_type = stripped.split(' (type: ')[-1].replace(')', '')
+                if '?' in line:
+                    field_type = line.split('? - (')[-1].split(')')[0]
+                else:
+                    field_type = stripped.split(' (type: ')[-1].replace(')', '')
                 for imp in get_imports(field_type):
                     game['dlls'][dll_name]['classes'][class_name]['imports'].add(imp)
 
@@ -239,6 +248,8 @@ def get_data(lines):
             elif section_name == 'methods':
                 method_name = stripped.split(' : ')[-1].split(' (')[0]
                 method_parameters_whole: str = stripped.split(' -> ')[0].split(' (')[-1].replace(')', '')
+                if '?' in line:
+                    continue
                 if method_parameters_whole:
                     if ', ' in method_parameters_whole:
                         method_parameters = method_parameters_whole.split(', ')
@@ -291,8 +302,6 @@ def try_make_dir(path):
 
 
 def try_make_init(path: str, dll_data: Dict[str, Any]) -> None:
-    with open(os.path.join(path, '__init__.py'), 'w'):
-        pass
     for k, v in dll_data['classes'].items():
         if '.' in k:
             full_path = k.split('.')
@@ -301,61 +310,89 @@ def try_make_init(path: str, dll_data: Dict[str, Any]) -> None:
             full_path = [k]
             class_name = full_path.pop()
             print(full_path)
+        full_str_path = os.path.join(path, *full_path)
+        try_make_dir(full_str_path)
 
-        is_important = 'System.Int' in k
+        is_important = 'Facebook' in k
         if is_important:
             print(f'path - {path}')
+            print(f'full_path - {full_path}')
+            print(f'class_name - {class_name}')
+            print(f'full_str_path - {full_str_path}')
         current_dir = path
         for name in full_path:
-            if is_important:
-                print(name)
-                print(current_dir)
-            current_dir = os.path.join(current_dir, name)
-            try_make_dir(current_dir)
             if not os.path.exists(os.path.join(current_dir, '__init__.py')):
                 with open(os.path.join(current_dir, '__init__.py'), 'w'):
                     pass
+            current_dir = os.path.join(current_dir, name)
         if '<' in class_name:
             fixed_class_name = class_name.split('<')[0]
         else:
             fixed_class_name = class_name
-        current_dir = os.path.join(current_dir, fixed_class_name)
-        try_make_dir(current_dir)
-        make_class_file(current_dir, class_name, v, fixed_class_name)
+        make_class_file(full_str_path, class_name, v, fixed_class_name)
 
+
+def no_self_ref(value_type: str, path: str) -> str:
+    if path in value_type:
+        return value_type.replace(path, '')
+    return value_type
+
+starts_with_num = re.compile(r"\d+.*")
 
 def make_class_file(path, class_name, class_data, fixed_class_name):
+    important = 'Facebook' in path
     lines = []
+    all_imports = set()
+    all_classes = []
+    pathway = os.path.join(path, '__init__.py')
+    if important:
+        print(pathway)
+    importing = True
+    if os.path.exists(pathway):
+        with open(pathway, 'r') as initial_file:
+            initial_lines = initial_file.readlines()
+            for line in initial_lines:
+                if importing:
+                    if 'import' in line:
+                        all_imports.add(line)
+                    else:
+                        importing = False
+                        all_classes.append(line)
+                else:
+                    all_classes.append(line)
 
-    with open(os.path.join(path, '__init__.py'), 'w') as file:
+    all_imports.add('from hook import FridaHook\n')
+    for imp in class_data['imports']:
+        fin_imp = imp
+        if '.' in imp:
+            fin_imp = '.'.join(imp.split('.')[:-1])
+        if re.fullmatch(starts_with_num, imp):
+            continue
+        if imp == class_name:
+            continue
+        all_imports.add(f'import {fin_imp}\n')
+
+    with open(pathway, 'w') as file:
         parent = '(FridaHook)'
-        lines.append(f'from hook import FridaHook\n')
-        from_imps = set()
-        for imp in class_data['imports']:
-            to_imp = imp.split('.')[-1]
-            if '.' in imp:
-                from_imp = '.'.join(imp.split('.')[:-1])
-                from_imps.add(f'from {imp} import {to_imp}\n')
-            else:
-                from_imps.add(f'from {imp} import {to_imp}\n')
-        for imp in from_imps:
+        for imp in all_imports:
             lines.append(imp)
 
         lines.append('\n')
+        for line in all_classes:
+            lines.append(line)
 
         if class_data['base_class']:
             parent_name = [*class_data['base_class'].keys()][0]
-            parent = f'({parent_name}, FridaHook)'
         lines.append(f'class {class_name}{parent}:\n')
         for static_field_name, static_field_data in class_data['static fields'].items():
-            lines.append(f'\t{static_field_name}: {static_field_data["type"]} = None\n')
+            lines.append(f'\t{static_field_name}: {no_self_ref(static_field_data["type"], path)} = None\n')
         if class_data['static fields']:
             lines.append('\n')
         fields = []
         field_self_lines = []
         for field_name, field_data in class_data['fields'].items():
-            fields.append(f'{field_name}: {field_data["type"]} = None')
-            field_self_lines.append(f'\t\tself.{field_name}: {field_data["type"]} = {field_name}\n')
+            fields.append(f'{field_name}: {no_self_ref(field_data["type"], path)} = None')
+            field_self_lines.append(f'\t\tself.{field_name}: {no_self_ref(field_data["type"], path)} = {field_name}\n')
         lines.append(f'\tdef __init__(self, {", ".join([*fields, "**kwargs"])}):\n')
         if class_data['base_class']:
             lines.append(f'\t\tsuper().__init__(**kwargs)\n')
@@ -370,7 +407,8 @@ def make_class_file(path, class_name, class_data, fixed_class_name):
                 lines.append(f'\tdef {method_name.replace(".", "")}(self, callback) -> dict:\n')
                 lines.append(f'\t\treturn self._call({method_data})\n')
                 lines.append('\n')
-        file.writelines(lines)
+        lines.append('\n')
+        with_brackets_lines = [with_brackets(lin) for lin in lines]
 
 
 def get_api_v1(game):
@@ -381,10 +419,18 @@ def get_api_v1(game):
     try_make_dir(version)
 
     for dll_name, dll_data in game['dlls'].items():
-        dll_path = os.path.join(version, *dll_name.split('.')[:-1])
-        try_make_dir(dll_path)
-        try_make_init(dll_path, dll_data)
+        try_make_init(version, dll_data)
 
+def get_straight_out():
+    new_lines = []
+    with open('./gen/data/cheat_engine_direct_no_delegates_pruned.py', 'r') as file:
+        lines = file.readlines()
+    for line in lines:
+        new_line = line.
+        new_lines.append(new_line)
 
 if __name__ == '__main__':
-    parse_with(parser_v2)
+    #make_pruned()
+    #make_delegate_pruned()
+    #parse_with(parser_v2)
+
