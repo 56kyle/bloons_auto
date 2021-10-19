@@ -22,6 +22,8 @@ def without_delegates(lines):
         if started_deleting_tabs == 4 and tabs < 4:
             deleting = False
         if (('__' in line and line.count('\t') == 2) or '<>' in line or line.split(' : ')[-1].startswith('<')) and not deleting:
+            if line.split(' : ')[-1].startswith('<'):
+                print(line)
             deleting = True
             started_deleting_tabs = tabs
 
@@ -141,7 +143,6 @@ def parse_with(parse: Callable):
 def parser_v2(lines: List[str]):
     lines = without_delegates(lines)
     lines = [line for line in parse_past_5(lines)]
-    print(lines)
 
     return lines
 
@@ -191,7 +192,6 @@ def get_data(lines):
         elif tabs == 1:
             #  Dll
             dll_name = '.'.join(stripped.split(' : ')[-1].split('.')[:-1])
-            print(dll_name)
             game['dlls'][dll_name] = {
                 'address': address,
                 'classes': {}
@@ -208,14 +208,14 @@ def get_data(lines):
                 'base_class': {},
             }
             if 'MidpointRounding' in class_name:
-                print(line)
+                pass
         elif tabs == 3:
             #  Field labels
             section_name = stripped
             game['dlls'][dll_name]['classes'][class_name][section_name] = {}
         elif tabs == 4:
             if 'MidpointRounding' in class_name:
-                print(line)
+                pass
             #  Field data
             if section_name == 'static fields':
                 static_field_name = stripped.split(' : ')[-1].split(' (')[0]
@@ -309,7 +309,6 @@ def try_make_init(path: str, dll_data: Dict[str, Any]) -> None:
         else:
             full_path = [k]
             class_name = full_path.pop()
-            print(full_path)
         full_str_path = os.path.join(path, *full_path)
         try_make_dir(full_str_path)
 
@@ -426,11 +425,11 @@ def get_straight_out():
     with open('./gen/data/cheat_engine_direct_no_delegates_pruned.py', 'r') as file:
         lines = file.readlines()
     for line in lines:
-        new_line = line.
+        new_line = line
         new_lines.append(new_line)
 
 if __name__ == '__main__':
-    #make_pruned()
-    #make_delegate_pruned()
-    #parse_with(parser_v2)
+    make_pruned()
+    make_delegate_pruned()
+    parse_with(parser_v2)
 
