@@ -2,7 +2,7 @@
 bloons_auto
 =================
 
-##Table of Contents
+### Table of Contents
 
 - [Summary](###Summary)
 - [API](###API)
@@ -11,7 +11,7 @@ bloons_auto
 
 
 
-###Summary
+### Summary
 Going into this, I had no idea the scope that it would eventually cover.
 The initial purpose of this repo was to gather info on what each towers hitbox is and to make a script for perfectly tessellating them. \
 Needless to say, this all got a bit out of hand and now has a large variety of information covering from towers and maps all the way to documenting useful functions found with cheat engine. \
